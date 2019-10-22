@@ -57,7 +57,9 @@ class UpgradeData implements UpgradeDataInterface
      */
     public function upgrade(ModuleDataSetupInterface $setup, ModuleContextInterface $context)
     {
-        if (version_compare($context->getVersion(), '1.0.0', '<')) {
+        if (version_compare($context->getVersion(), '1.0.1', '<')) {
+            $this->blockTask4();
+            $this->updateHomepage();
             
         }
     }
@@ -79,13 +81,15 @@ class UpgradeData implements UpgradeDataInterface
     {
         return $this->blockFactory->create();
     }
-    private function sampleCmsBlockUpdate(){
+    private function blockTask4(){
         /* adjust these vars value below whichever you need on your update */
         $cmsBlockContent = <<<EOD
-TEST BLOCK
+        <div class="task4"><img src="{{media url="wysiwyg/Capture.PNG"}}" alt="">
+        <div class="produk"><a class="lihatsemua" href="http://local.m2-opensource233.com/lmen.html">Lihat Semua</a> {{widget type="Magento\CatalogWidget\Block\Product\ProductsList" show_pager="0" products_count="3" template="Magento_CatalogWidget::product/widget/content/grid.phtml" conditions_encoded="^[`1`:^[`type`:`Magento||CatalogWidget||Model||Rule||Condition||Combine`,`aggregator`:`all`,`value`:`1`,`new_child`:``^],`1--1`:^[`type`:`Magento||CatalogWidget||Model||Rule||Condition||Product`,`attribute`:`category_ids`,`operator`:`==`,`value`:`41`^]^]"}}</div>
+        </div>
 EOD;
-        $identifier = 'test_block';
-        $title = '';
+        $identifier = 'task4';
+        $title = 'task4';
         $isActive = 1;
         $cmsBlock = $this->createBlock()->load($identifier, 'identifier');
         if (!$cmsBlock->getId()) {
@@ -101,39 +105,13 @@ EOD;
             $cmsBlock->setContent($cmsBlockContent)->setTitle($title)->save();
         }
     }
-    private function sampleCmsPageUpdate(){
-        /* adjust these vars value below whichever you need on your update */
-        $pageContent = <<<EOD
-TEST PAGE
-EOD;
-        $identifier = 'test_page';
-        $title = 'TEST PAGE';
-        $contentHeading = '';
-        $pageLayout = '1column';
-        $isActive = 1;
-        $cmsPage = $this->createPage()->load($identifier, 'identifier');
-        if (!$cmsPage->getId()) {
-            $cmsPageContent = [
-                'title' => $title,
-                'content_heading' => $contentHeading,
-                'page_layout' => $pageLayout,
-                'identifier' => $identifier,
-                'content' => $pageContent,
-                'is_active' => $isActive,
-                'stores' => [0],
-                'sort_order' => 0,
-            ];
-            $this->createPage()->setData($cmsPageContent)->save();
-        } else {
-            $cmsPage->setContent($pageContent)->setTitle($title)->setContentHeading($contentHeading)->setLayout($pageLayout)->setIsActive($isActive)->save();
-        }
-    }
     private function updateHomepage(){
         /* adjust these vars value below whichever you need on your update */
         $pageContent = <<<EOD
+        <p>{{widget type="Magento\Cms\Block\Widget\Block" template="widget/static_block/default.phtml" block_id="19"}}</p>
 EOD;
         $identifier = 'home';
-        $title = 'Mitra 10';
+        $title = 'Home Page';
         $contentHeading = '';
         $pageLayout = '1column';
         $isActive = 1;
