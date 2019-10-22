@@ -1,0 +1,10 @@
+& when (@media-target = 'mobile'), (@media-target = 'all') {
+
+    @media only screen and (max-width: @screen__ml) {
+        .media-width('max', (@screen__ml));
+    }
+    @media only screen and (min-width: (@screen__ml + 1)),
+    print {
+        .media-width('min', (@screen__ml + 1));
+    }
+}

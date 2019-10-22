@@ -1,0 +1,95 @@
+& when (@media-common = true) {
+    .cms-index-index{
+        .task4{
+            img {
+                width: 500px;
+            }
+            .produk {
+                float: right;
+                a.lihatsemua{
+                    float: right;
+                    color:#000000;
+                }
+                a.lihatsemua:hover{
+                    text-decoration: none;
+                }
+                a.lihatsemua:after {
+                    -webkit-font-smoothing: antialiased;
+                    -moz-osx-font-smoothing: grayscale;
+                    font-size: 12px;
+                    line-height: 20px;
+                    color: inherit;
+                    content: '\e608';
+                    font-family: 'luma-icons';
+                    vertical-align: middle;
+                    display: inline-block;
+                    font-weight: bold;
+                    overflow: hidden;
+                    text-align: center;
+                }
+            }
+            img {
+                border-radius: 10px;
+            }
+            .block.widget.block-products-list.grid{
+                li.product-item {
+                    width: calc((100% - 4%)/3)!important;
+                }
+            }
+            .product-item-details {
+                text-align: center;
+            }
+            .price-box.price-final_price {
+                color: #a6ce3a;
+            }
+            button.action.tocart.primary, button.action.tocart.primary:hover {
+                border: 0;
+                background: #ffd900;
+                span {
+                    color: #000000;
+                }
+            }
+            .products-grid {
+                .product-item-info {
+                    &:not(:hover):not(.active) {
+                        .product-item-inner {
+                            position: relative;
+                            height: auto;
+                            width: auto;
+                            border: none;
+                            box-shadow: none;
+                        }
+                        .product-item-actions{
+                            margin: 0;
+                        }
+                        .actions-secondary{
+                            display:none;
+                        }
+                    }
+                    &:hover{
+                        .actions-secondary{
+                            display:none;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .page-bottom{
+        .block.newsletter {
+            width: 100%;
+        }
+    }
+    
+}
+
+//-----IPAD-----//
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__ml){
+
+}
+
+//---CUSTOM RESPONSIVE---//
+@media only screen and (max-width: 479px){
+    
+
+}
