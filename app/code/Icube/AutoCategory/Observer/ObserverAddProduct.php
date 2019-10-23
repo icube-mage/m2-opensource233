@@ -6,20 +6,19 @@ class ObserverAddProduct implements \Magento\Framework\Event\ObserverInterface
 
     public function execute(\Magento\Framework\Event\Observer $observer)
     {
-        $writer = new \Zend\Log\Writer\Stream(BP . '/var/log/product.log');
-        $logger = new \Zend\Log\Logger();
-        $logger->addWriter($writer);
-
         $_product = $observer->getProduct();
 
         $_sku= $_product->getSku();
         $_sale= $_product->getSale();
-        $logger->info($_sale);
-
-        if($_sale==0){
-            $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
-            $CategoryLinkRepository = $objectManager->get('\Magento\Catalog\Model\CategoryLinkRepository');
-
+        
+        $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+        $CategoryLinkRepository = $objectManager->get('\Magento\Catalog\Model\CategoryLinkRepository');
+        $categoryLinkRepository = $objectManager->get('\Magento\Catalog\Api\CategoryLinkManagementInterface'); 
+        
+        if($_sale==1){
+            $categoryIds= array('37');
+            $categoryLinkRepository->assignProductToCategories($_sku, $categoryIds);
+        }else{
             $categoryId= 37;
             $CategoryLinkRepository->deleteByIds($categoryId,$_sku);
         }
