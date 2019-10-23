@@ -6,7 +6,7 @@
 			<general>
 				<enable>1</enable>
 				<new_range>3</new_range>
-				<cron>3</cron>
+				<cron>* * * * *</cron>
 			</general>
 		</auto_category >
 	</default>
