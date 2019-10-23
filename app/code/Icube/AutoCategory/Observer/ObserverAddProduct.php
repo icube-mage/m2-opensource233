@@ -9,6 +9,10 @@ class ObserverAddProduct implements \Magento\Framework\Event\ObserverInterface
         $writer = new \Zend\Log\Writer\Stream(BP . '/var/log/product.log');
         $logger = new \Zend\Log\Logger();
         $logger->addWriter($writer);
-        $logger->info('Your text message');
+
+        $_product = $observer->getProduct();
+
+        $_sale= $_product->getSale();
+        $logger->info($_sale);
     }
 }
