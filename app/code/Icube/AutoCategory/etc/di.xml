@@ -4,6 +4,7 @@
         <arguments>
             <argument name="commands" xsi:type="array">
                 <item name="NewArrivals" xsi:type="object">Icube\AutoCategory\Console\Command\NewArrivals</item>
+                <item name="Config" xsi:type="object">Icube\AutoCategory\Console\Command\Config</item>
             </argument>
         </arguments>
     </type>

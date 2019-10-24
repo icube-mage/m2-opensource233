@@ -14,11 +14,6 @@ use Icube\AutoCategory\Helper\Data;
     class NewArrivals extends Command
     {
 
-      const STATUS = 'Status';
-      // const RANGE = 'Range';
-      // const CRON = 'Cron';
-      public $cek = "Trisna Risnandar";
-
          /**
          * Module list
          *
@@ -41,15 +36,10 @@ use Icube\AutoCategory\Helper\Data;
          */
         protected function configure()
         {
-          $commandoptions = [new InputOption(self::STATUS, null, InputOption::VALUE_REQUIRED, 'Status')];
-          // $commandoptions = [new InputOption(self::RANGE, null, InputOption::VALUE_REQUIRED, 'Range')];
-          // $commandoptions = [new InputOption(self::CRON, null, InputOption::VALUE_REQUIRED, 'Cron')];
 
           $this->setName('category:newarrivals:list');
           $this->setDescription('This is my first console command.');
-          $this->setDefinition($commandoptions);
-          $this->addArgument('number', InputArgument::REQUIRED, __('Type a string'));
-
+        
           parent::configure();
         }
 
@@ -61,6 +51,12 @@ use Icube\AutoCategory\Helper\Data;
          */
         protected function execute(InputInterface $input, OutputInterface $output)
         {
+          // 0/5 * * * * php bin/magento category:newarrivals:list
+          // $writer = new \Zend\Log\Writer\Stream(BP . '/var/log/sale.log');
+          //  $logger = new \Zend\Log\Logger();
+          //  $logger->addWriter($writer);
+          //  $logger->info("Trisna Risnandar");
+
           $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
           $cek1 = $objectManager->create('\Magento\Catalog\Model\Category')->getCollection();
           $objDate = $objectManager->create('Magento\Framework\Stdlib\DateTime\DateTime');
@@ -85,21 +81,26 @@ use Icube\AutoCategory\Helper\Data;
           if($status == 0){
           // echo '---'.$this->data->getRange().'----';
             foreach ($allcategoryproduct as $category) {
-              $tempp = date('d',strtotime($date));
-              $tempp1 = date('d',strtotime($category->getCreatedAt()));
-              $tempp1 = $tempp1+$this->data->getRange();
-              if($tempp >= $tempp1){
+              $tempp = date('d-m-Y',strtotime($date));
+              $tempp1 = date('d-m-Y',strtotime('+'.$this->data->getRange().'days' ,strtotime($category->getCreatedAt())));
+              // $tempp1 = $tempp1+$this->data->getRange();
+              if($tempp <= $tempp1){
                 $categoryId = $cateid;
-                $sku = $category->getSku();
                 $CategoryLinkRepository->deleteByIds($categoryId,$sku);
+                $sku = $category->getSku();
+                // echo $sku;
               }
             }
+            $output->writeln('<info>Success Message.</info>');
+          }else{
+            $output->writeln('<error>Status Not Enable.</error>');
           }
+
+                // echo $status;
 
           // $output->writeln($this->data->setStatus(0));
          /* $output->writeln($this->data->getStatus());
           $output->writeln($this->cek);
-          $output->writeln('<info>Success Message.</info>');
           $output->writeln('<error>An error encountered.</error>');*/
         }
       }

@@ -8,9 +8,9 @@ class AutoCategory implements \Magento\Framework\Event\ObserverInterface
 
   public function execute(\Magento\Framework\Event\Observer $observer)
   {
-   $writer = new \Zend\Log\Writer\Stream(BP . '/var/log/sale.log');
-   $logger = new \Zend\Log\Logger();
-   $logger->addWriter($writer);
+   // $writer = new \Zend\Log\Writer\Stream(BP . '/var/log/sale.log');
+   // $logger = new \Zend\Log\Logger();
+   // $logger->addWriter($writer);
 
 
    $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
@@ -22,8 +22,9 @@ class AutoCategory implements \Magento\Framework\Event\ObserverInterface
    $tempSale = $tempProduct->getSale();
    $tempSku = $tempProduct->getSku();
 
-   $logger->info('EFN '.$tempExcludeFromNew);
-   $logger->info('sale '.$tempSale);
+   // $logger->info('EFN '.$tempExcludeFromNew);
+   // $logger->info('sale '.$tempSale);
+
 
    //input
    $temp=0;
@@ -34,24 +35,27 @@ class AutoCategory implements \Magento\Framework\Event\ObserverInterface
     $temp++;
   }
 
-  if($temp == 2){
-    $tempId = array(37,41);
-    $categoryLinkManagement->assignProductToCategories($tempSku,$tempId);
-  }else if($tempExcludeFromNew == 0){
+
+  if($tempExcludeFromNew == 0 && $temp != 2){
     $tempId = array(41);
     $categoryLinkManagement->assignProductToCategories($tempSku,$tempId);
-  }else if($tempSale == 1){
-    $tempId = array(37);
-    $categoryLinkManagement->assignProductToCategories($tempSku,$tempId);
+  }else if($temp != 2){
+    $tempId = 41;
+    $CategoryLinkRepository->deleteByIds($tempId,$tempSku);
   }
 
-  if($tempSale == 0){
+
+  if($tempSale == 1 && $temp != 2){
+    $tempId = array(37);
+    $categoryLinkManagement->assignProductToCategories($tempSku,$tempId);
+  }else if($temp != 2){
     $tempId = 37;
     $CategoryLinkRepository->deleteByIds($tempId,$tempSku);
   }
-  if($tempExcludeFromNew == 1){
-    $tempId = 41;
-    $CategoryLinkRepository->deleteByIds($tempId,$tempSku);
+
+  if($temp == 2){
+    $tempId = array(37,41);
+    $categoryLinkManagement->assignProductToCategories($tempSku,$tempId);
   }
 
 
