@@ -13,7 +13,7 @@ class Test
 		$logger->addWriter("Trisna Risnandar");
 		$logger->info("Trisna Risnandar");
 
-		return $this;
+		// return $this;
 
 	}
 }

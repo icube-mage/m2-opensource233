@@ -12,12 +12,12 @@ class AutoCategory implements \Magento\Framework\Event\ObserverInterface
    $logger = new \Zend\Log\Logger();
    $logger->addWriter($writer);
 
-   $tempProduct = $observer->getProduct();
 
    $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
    $CategoryLinkRepository = $objectManager->get('\Magento\Catalog\Model\CategoryLinkRepository');
    $categoryLinkManagement = $objectManager->get('\Magento\Catalog\Api\CategoryLinkManagementInterface');
 
+   $tempProduct = $observer->getProduct();
    $tempExcludeFromNew = $tempProduct->getExcludeFromNew();
    $tempSale = $tempProduct->getSale();
    $tempSku = $tempProduct->getSku();
@@ -25,29 +25,53 @@ class AutoCategory implements \Magento\Framework\Event\ObserverInterface
    $logger->info('EFN '.$tempExcludeFromNew);
    $logger->info('sale '.$tempSale);
 
-   // if($tempExcludeFromNew == 1){
+   //input
+   $temp=0;
+   if($tempExcludeFromNew == 0){
+    $temp++;
+  }
+  if($tempSale == 1){
+    $temp++;
+  }
 
-   // }
-
-
-   if($tempExcludeFromNew == 1){
-    $tempId = 41;
-    $CategoryLinkRepository->deleteByIds($tempId,$tempSku);
+  if($temp == 2){
+    $tempId = array(37,41);
+    $categoryLinkManagement->assignProductToCategories($tempSku,$tempId);
   }else if($tempExcludeFromNew == 0){
     $tempId = array(41);
     $categoryLinkManagement->assignProductToCategories($tempSku,$tempId);
-    $logger->info('Ot IN'.$tempProduct->getExcludeFromNew());
+  }else if($tempSale == 1){
+    $tempId = array(37);
+    $categoryLinkManagement->assignProductToCategories($tempSku,$tempId);
   }
 
-  
-  // if($tempSale == 0){
-  //   $tempId = 37;
+  if($tempSale == 0){
+    $tempId = 37;
+    $CategoryLinkRepository->deleteByIds($tempId,$tempSku);
+  }
+  if($tempExcludeFromNew == 1){
+    $tempId = 41;
+    $CategoryLinkRepository->deleteByIds($tempId,$tempSku);
+  }
+
+
+
+
+
+  //  if($tempExcludeFromNew == 1){
+  //   $tempId = 41;
   //   $CategoryLinkRepository->deleteByIds($tempId,$tempSku);
+  // }else if($tempExcludeFromNew == 0){
+  //   $tempId = array(41);
+  //   $categoryLinkManagement->assignProductToCategories($tempSku,$tempId);
+  //   $logger->info('Ot IN'.$tempProduct->getExcludeFromNew());
   // }
 
 
-  
-  // if($tempSale == 1){
+  // if($tempSale == 0){
+  //   $tempId = 37;
+  //   $CategoryLinkRepository->deleteByIds($tempId,$tempSku);
+  // }else if($tempSale == 1){
   //   $tempId = array(37);
   //   $categoryLinkManagement->assignProductToCategories($tempSku,$tempId);
   //   $logger->info('In push'.$tempProduct->getExcludeFromNew());
@@ -56,9 +80,9 @@ class AutoCategory implements \Magento\Framework\Event\ObserverInterface
   //    $tempId = array(37,41);
   //    $categoryLinkManagement->assignProductToCategories($tempSku,$tempId);
   // }
-  $logger->info($tempProduct->getSku());
-  $logger->info($tempExcludeFromNew);
-  $logger->info($tempSku);
+  // $logger->info($tempProduct->getSku());
+  // $logger->info($tempExcludeFromNew);
+  // $logger->info($tempSku);
 
 
 

@@ -3,6 +3,7 @@ namespace Icube\AutoCategory\Console\Command;
 
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Icube\AutoCategory\Helper\Data;
@@ -13,8 +14,11 @@ use Icube\AutoCategory\Helper\Data;
     class NewArrivals extends Command
     {
 
-      const CUSTOMERNAME = 'Name';
+      const STATUS = 'Status';
+      // const RANGE = 'Range';
+      // const CRON = 'Cron';
       public $cek = "Trisna Risnandar";
+
          /**
          * Module list
          *
@@ -25,7 +29,9 @@ use Icube\AutoCategory\Helper\Data;
         /**
          * @param bookingFactory $bookingFactory
          */
-        public function __construct(Data $data)
+        public function __construct(
+          Data $data
+        )
         {
           $this->data = $data;
           parent::__construct();
@@ -35,10 +41,16 @@ use Icube\AutoCategory\Helper\Data;
          */
         protected function configure()
         {
-        	$this->setName('category:newarrivals:enable');
-        	$this->setDescription('This is my first console command.');
+          $commandoptions = [new InputOption(self::STATUS, null, InputOption::VALUE_REQUIRED, 'Status')];
+          // $commandoptions = [new InputOption(self::RANGE, null, InputOption::VALUE_REQUIRED, 'Range')];
+          // $commandoptions = [new InputOption(self::CRON, null, InputOption::VALUE_REQUIRED, 'Cron')];
 
-        	parent::configure();
+          $this->setName('category:newarrivals:list');
+          $this->setDescription('This is my first console command.');
+          $this->setDefinition($commandoptions);
+          $this->addArgument('number', InputArgument::REQUIRED, __('Type a string'));
+
+          parent::configure();
         }
 
         /**
@@ -51,31 +63,44 @@ use Icube\AutoCategory\Helper\Data;
         {
           $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
           $cek1 = $objectManager->create('\Magento\Catalog\Model\Category')->getCollection();
+          $objDate = $objectManager->create('Magento\Framework\Stdlib\DateTime\DateTime');
+          $CategoryLinkRepository = $objectManager->get('\Magento\Catalog\Model\CategoryLinkRepository');
+
+          $date = $objDate->gmtDate();
+
+          $cateid;         
           foreach ($cek1 as $category) {
             $tempCategory = $objectManager->create('\Magento\Catalog\Model\Category')->load($category->getEntityId());
-            echo $cek12->getName();
-// echo $category->getName() . '<br>';
-            echo "<br>";
-            // print_R($category->getData());
+            if($tempCategory->getName() == "New Arrivals"){
+              $cateid = $tempCategory->getEntityId();
+            }
           }
 
-
-          $cateid = '40';         
           $cateinstance = $objectManager->create('Magento\Catalog\Model\CategoryFactory');
           $allcategoryproduct = $cateinstance->create()->load($cateid)->getProductCollection()->addAttributeToSelect('*');
-          $CategoryLinkRepository = $objectManager->get('\Magento\Catalog\Model\CategoryLinkRepository');
-          $temp = $allcategoryproduct->getData();
-          var_dump($temp);
-          // $temp = $temp[0]['sku'];
-          foreach ($allcategoryproduct as $category) {
-            // $categoryId = $cateid;
-            //$sku = $category->getSku();
-            //$CategoryLinkRepository->deleteByIds($categoryId,$sku);
-            // print_R($category->getData());
+          // echo '++++'.date('d',strtotime($date)).'++++';
+
+          $status = $this->data->getStatus();
+          // echo $status;
+          if($status == 0){
+          // echo '---'.$this->data->getRange().'----';
+            foreach ($allcategoryproduct as $category) {
+              $tempp = date('d',strtotime($date));
+              $tempp1 = date('d',strtotime($category->getCreatedAt()));
+              $tempp1 = $tempp1+$this->data->getRange();
+              if($tempp >= $tempp1){
+                $categoryId = $cateid;
+                $sku = $category->getSku();
+                $CategoryLinkRepository->deleteByIds($categoryId,$sku);
+              }
+            }
           }
+
+          // $output->writeln($this->data->setStatus(0));
+         /* $output->writeln($this->data->getStatus());
           $output->writeln($this->cek);
           $output->writeln('<info>Success Message.</info>');
-          $output->writeln('<error>An error encountered.</error>');
+          $output->writeln('<error>An error encountered.</error>');*/
         }
       }
 
