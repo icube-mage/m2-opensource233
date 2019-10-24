@@ -20,6 +20,8 @@ class ObserverAddProduct implements \Magento\Framework\Event\ObserverInterface
         $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
         $CategoryLinkRepository = $objectManager->get('\Magento\Catalog\Model\CategoryLinkRepository');
         $categoryLinkRepository = $objectManager->get('\Magento\Catalog\Api\CategoryLinkManagementInterface'); 
+
+        
         
         if($_sale==1 && $_excludeNew==0){
             $categoryIds= array('37','41');
