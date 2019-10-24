@@ -43,19 +43,15 @@ class NewArrivalsCommandEnable extends command{
       * @inheritdoc
       */
      protected function execute(InputInterface $input, OutputInterface $output){
-         $this->configWriter->save('auto_category/general/enable',  $value=1, $scope = ScopeConfigInterface::SCOPE_TYPE_DEFAULT, $scopeId = 0);
+        //  $this->configWriter->save('auto_category/general/enable',  $value=1, $scope = ScopeConfigInterface::SCOPE_TYPE_DEFAULT, $scopeId = 0);
          $output->writeln("Auto new arrivals has been enable");
         
          $objectManager =  \Magento\Framework\App\ObjectManager::getInstance();       
-         $categoryFactory = $objectManager->get('\Magento\Catalog\Model\CategoryFactory');
          $CategoryLinkRepository = $objectManager->get('\Magento\Catalog\Model\CategoryLinkRepository');
          $categoryLinkRepository = $objectManager->get('\Magento\Catalog\Api\CategoryLinkManagementInterface'); 
 
 
          $categoryId = 41;
-         $category = $categoryFactory->create()->load($categoryId);
-         $categoryProducts = $category->getProductCollection()
-                             ->addAttributeToSelect('*');
 
                                
          $writer = new \Zend\Log\Writer\Stream(BP . '/var/log/customer.log');
@@ -64,29 +60,25 @@ class NewArrivalsCommandEnable extends command{
                  
         $currentDate = date('Y-m-d');   
         $range= (string)$this->helper->getConfigRange();
-        foreach ($categoryProducts as $productCategory) {
-            $date= date("Y-m-d",strtotime($productCategory->getCreatedAt()."+ ".$range." day")); 
-            $_sku= $productCategory->getSku();         
-            if($currentDate==$date){
-                $CategoryLinkRepository->deleteByIds($categoryId,$_sku);
-            }
-            
-        }       
+        $_enable= $this->helper->getConfigEnable();
         
         $productCollection = $objectManager->create('Magento\Catalog\Model\ResourceModel\Product\Collection');
         /** Apply filters here */
         $collection = $productCollection->addAttributeToSelect('*')
         ->load();
         
-        foreach ($collection as $product){
-            $date= date("Y-m-d",strtotime($product->getCreatedAt()."+ ".$range." day")); 
-            $_sku= $product->getSku();
-            if($product->getExcludeFromNew()==0 && ($date!=$currentDate)){
-                $categoryIds= array('41');
-                $categoryLinkRepository->assignProductToCategories($_sku, $categoryIds);
-            }
-            $logger->info($product->getExcludeFromNew()); 
-         }
-        
+        if($_enable==1){
+            foreach ($collection as $product){
+                $date= date("Y-m-d",strtotime($product->getCreatedAt()."+ ".$range." day")); 
+                $_sku= $product->getSku();
+                if($product->getExcludeFromNew()==0 && ($date!=$currentDate)){
+                    $categoryIds= array('41');
+                    $categoryLinkRepository->assignProductToCategories($_sku, $categoryIds);
+                }elseif($product->getExcludeFromNew()==1 || ($date==$currentDate)){
+                    $CategoryLinkRepository->deleteByIds($categoryId,$_sku);
+                }
+                $logger->info($product->getData()); 
+             }
+        }
      }
 }
