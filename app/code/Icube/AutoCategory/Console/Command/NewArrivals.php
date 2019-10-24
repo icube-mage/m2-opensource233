@@ -39,7 +39,7 @@ use Icube\AutoCategory\Helper\Data;
 
           $this->setName('category:newarrivals:list');
           $this->setDescription('This is my first console command.');
-        
+
           parent::configure();
         }
 
@@ -51,57 +51,42 @@ use Icube\AutoCategory\Helper\Data;
          */
         protected function execute(InputInterface $input, OutputInterface $output)
         {
-          // 0/5 * * * * php bin/magento category:newarrivals:list
-          // $writer = new \Zend\Log\Writer\Stream(BP . '/var/log/sale.log');
-          //  $logger = new \Zend\Log\Logger();
-          //  $logger->addWriter($writer);
-          //  $logger->info("Trisna Risnandar");
 
           $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
-          $cek1 = $objectManager->create('\Magento\Catalog\Model\Category')->getCollection();
+          $category = $objectManager->create('\Magento\Catalog\Model\Category')->getCollection();
           $objDate = $objectManager->create('Magento\Framework\Stdlib\DateTime\DateTime');
           $CategoryLinkRepository = $objectManager->get('\Magento\Catalog\Model\CategoryLinkRepository');
 
+          $productCollection = $objectManager->create('Magento\Catalog\Model\ResourceModel\Product\Collection');
+
+
+          $Product = $objectManager->create('Magento\Catalog\Model\Product')->getCollection()->addAttributeToSelect('*');
+          $categoryLinkManagement = $objectManager->get('\Magento\Catalog\Api\CategoryLinkManagementInterface');
           $date = $objDate->gmtDate();
 
-          $cateid;         
-          foreach ($cek1 as $category) {
-            $tempCategory = $objectManager->create('\Magento\Catalog\Model\Category')->load($category->getEntityId());
-            if($tempCategory->getName() == "New Arrivals"){
-              $cateid = $tempCategory->getEntityId();
-            }
-          }
-
-          $cateinstance = $objectManager->create('Magento\Catalog\Model\CategoryFactory');
-          $allcategoryproduct = $cateinstance->create()->load($cateid)->getProductCollection()->addAttributeToSelect('*');
-          // echo '++++'.date('d',strtotime($date)).'++++';
-
           $status = $this->data->getStatus();
-          // echo $status;
-          if($status == 0){
-          // echo '---'.$this->data->getRange().'----';
-            foreach ($allcategoryproduct as $category) {
+          if($status == 1){
+            $cateid = 41; 
+            foreach ($Product as $list) {
               $tempp = date('d-m-Y',strtotime($date));
-              $tempp1 = date('d-m-Y',strtotime('+'.$this->data->getRange().'days' ,strtotime($category->getCreatedAt())));
-              // $tempp1 = $tempp1+$this->data->getRange();
-              if($tempp <= $tempp1){
+              $tempp1 = date('d-m-Y',strtotime('+'.$this->data->getRange().'days' ,strtotime($list->getCreatedAt())));
+
+              $sku = $list->getSku();
+              if(($list->getExcludeFromNew() == 1) && ($tempp > $tempp1)){
                 $categoryId = $cateid;
                 $CategoryLinkRepository->deleteByIds($categoryId,$sku);
-                $sku = $category->getSku();
-                // echo $sku;
+              }else if(($list->getExcludeFromNew() == 0) && ($tempp <= $tempp1)){
+                $tempId = array($cateid);
+                $categoryLinkManagement->assignProductToCategories($sku,$tempId);
               }
+
             }
             $output->writeln('<info>Success Message.</info>');
           }else{
             $output->writeln('<error>Status Not Enable.</error>');
           }
+          // echo $status;
 
-                // echo $status;
-
-          // $output->writeln($this->data->setStatus(0));
-         /* $output->writeln($this->data->getStatus());
-          $output->writeln($this->cek);
-          $output->writeln('<error>An error encountered.</error>');*/
         }
       }
 
