@@ -40,7 +40,8 @@ class InstallData implements InstallDataInterface
 				'comparable' => false,
 				'visible_on_front' => false,
 				'used_in_product_listing' => true,
-				'unique' => false
+				'unique' => false,
+				'attribute_set_id' => 'default'
 			]
 		);
 		$eavSetup->addAttribute(
@@ -62,7 +63,8 @@ class InstallData implements InstallDataInterface
 				'comparable' => false,
 				'visible_on_front' => false,
 				'used_in_product_listing' => true,
-				'unique' => false
+				'unique' => false,
+				'attribute_set_id' => 'default'
 			]
 		);
 		

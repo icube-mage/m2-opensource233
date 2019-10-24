@@ -49,6 +49,8 @@ class NewArrivalsCommandEnable extends command{
          $objectManager =  \Magento\Framework\App\ObjectManager::getInstance();       
          $categoryFactory = $objectManager->get('\Magento\Catalog\Model\CategoryFactory');
          $CategoryLinkRepository = $objectManager->get('\Magento\Catalog\Model\CategoryLinkRepository');
+         $categoryLinkRepository = $objectManager->get('\Magento\Catalog\Api\CategoryLinkManagementInterface'); 
+
 
          $categoryId = 41;
          $category = $categoryFactory->create()->load($categoryId);
@@ -60,17 +62,31 @@ class NewArrivalsCommandEnable extends command{
          $logger = new \Zend\Log\Logger();
          $logger->addWriter($writer);
                  
+        $currentDate = date('Y-m-d');   
+        $range= (string)$this->helper->getConfigRange();
         foreach ($categoryProducts as $productCategory) {
-            $range= (string)$this->helper->getConfigRange();
             $date= date("Y-m-d",strtotime($productCategory->getCreatedAt()."+ ".$range." day")); 
-            $currentDate = date('Y-m-d');   
             $_sku= $productCategory->getSku();         
             if($currentDate==$date){
                 $CategoryLinkRepository->deleteByIds($categoryId,$_sku);
             }
-
-            $logger->info($productCategory->getSku()); 
-         }                    
+            
+        }       
+        
+        $productCollection = $objectManager->create('Magento\Catalog\Model\ResourceModel\Product\Collection');
+        /** Apply filters here */
+        $collection = $productCollection->addAttributeToSelect('*')
+        ->load();
+        
+        foreach ($collection as $product){
+            $date= date("Y-m-d",strtotime($product->getCreatedAt()."+ ".$range." day")); 
+            $_sku= $product->getSku();
+            if($product->getExcludeFromNew()==0 && ($date!=$currentDate)){
+                $categoryIds= array('41');
+                $categoryLinkRepository->assignProductToCategories($_sku, $categoryIds);
+            }
+            $logger->info($product->getExcludeFromNew()); 
+         }
         
      }
 }
