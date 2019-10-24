@@ -16,6 +16,9 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
 	public function getConfigEnable(){
 		return $this->scopeConfig->getValue('auto_category/general/enable',\Magento\Store\Model\ScopeInterface::SCOPE_STORE);
 	}
+	public function getConfigRange(){
+		return $this->scopeConfig->getValue('auto_category/general/new_range',\Magento\Store\Model\ScopeInterface::SCOPE_STORE);
+	}
 
 }
 
