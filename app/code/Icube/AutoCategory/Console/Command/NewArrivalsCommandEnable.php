@@ -68,7 +68,8 @@ class NewArrivalsCommandEnable extends command{
             if($currentDate==$date){
                 $CategoryLinkRepository->deleteByIds($categoryId,$_sku);
             }
-            // $logger->info($productCategory->getSku()); 
+
+            $logger->info($productCategory->getSku()); 
          }                    
         
      }

@@ -11,7 +11,10 @@ class NewArrivalsCron
 
     public function execute()
     {
-        $this->_logger->info(__METHOD__);
-        return $this;
+        $writer = new \Zend\Log\Writer\Stream(BP . '/var/log/test.log');
+        $logger = new \Zend\Log\Logger();
+        $logger->addWriter($writer);
+        $logger->info("test"); 
+
     }
 }
