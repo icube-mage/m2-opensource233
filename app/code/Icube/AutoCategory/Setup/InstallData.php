@@ -11,7 +11,7 @@ use Magento\Framework\Setup\ModuleDataSetupInterface;
 class InstallData implements InstallDataInterface
 {
 	private $eavSetupFactory;
-
+	
 	public function __construct(EavSetupFactory $eavSetupFactory)
 	{
 		$this->eavSetupFactory = $eavSetupFactory;
@@ -19,6 +19,8 @@ class InstallData implements InstallDataInterface
 	
 	public function install(ModuleDataSetupInterface $setup, ModuleContextInterface $context)
 	{
+		# create attribute programmatically
+		
 		$eavSetup = $this->eavSetupFactory->create(['setup' => $setup]);
 		
 		$eavSetup->addAttribute(
@@ -73,6 +75,8 @@ class InstallData implements InstallDataInterface
 				'apply_to' => ''
 			]
 		);
+		
+		# create category programmatically
 		
 	}
 }

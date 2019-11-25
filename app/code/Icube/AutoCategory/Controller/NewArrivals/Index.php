@@ -12,6 +12,7 @@ class Index extends Action
 	protected $_categoryCollectionFactory;
 	protected $_categoryLinkManagement;
 	protected $_categoryLinkRepository;
+	protected $_storeScope;
 	
 	public function __construct(
 		Context $context,
@@ -29,64 +30,90 @@ class Index extends Action
 		$this->_categoryLinkManagement		= $categoryLinkManagement;
 		$this->_categoryLinkRepository		= $categoryLinkRepository;
 		
+		$this->_storeScope	= \Magento\Store\Model\ScopeInterface::SCOPE_STORES;
+		
 		parent::__construct($context, $data);
 
 	}
 	public function execute()
 	{
-		# get new range days
-		$storeScope	= \Magento\Store\Model\ScopeInterface::SCOPE_STORES;
-		$newrange	= $this->_scopeConfig->getValue("autocategory/general/newrange", $storeScope);
+		# check if module enable
+		$isEnabled = $newrange	= $this->_scopeConfig->getValue("autocategory/general/enable", $this->_storeScope);
 		
-		# get category id for New Arrivals
-		$newArrival = $this->_categoryCollectionFactory
-                ->create()
-                ->addAttributeToFilter('name',"New Arrivals")
-                ->setPageSize(1);
-		$newCategoryId = '';
-		if ($newArrival->getSize()) {
-			$newCategoryId = $newArrival->getFirstItem()->getId();
+		if($isEnabled == 1)
+		{
+			# get new range days
+			$newrange	= $this->_scopeConfig->getValue("autocategory/general/newrange", $this->_storeScope);
+			
+			# get category id for New Arrivals
+			$newArrival = $this->_categoryCollectionFactory
+					->create()
+					->addAttributeToFilter('name',"New Arrivals")
+					->setPageSize(1);
+			$newCategoryId = '';
+			if ($newArrival->getSize()) {
+				$newCategoryId = $newArrival->getFirstItem()->getId();
+			}
+			
+			# get product collection
+			$collection = $this->_productCollectionFactory->create();
+			$collection->addAttributeToSelect('*');
+			
+			// $toDate = date("Y-m-d h:i:s"); // current date
+			// $fromDate = date('Y-m-d h:i:s', strtotime('-'.$newrange.' day', strtotime($toDate))); // X days before
+			// $collection->addFieldToFilter('created_at', array('from'=>$fromDate, 'to'=>$toDate));
+			$collection->addFieldToFilter('exclude_from_new', '0');
+			
+			# code to add data pagination 
+			// $collection->setPageSize(2);
+			
+			$i = 0;
+			
+			foreach ($collection as $product) {
+				
+				# get product sku
+				$productSku = $product->getSku();
+				
+				# get product categories
+				$categoryIds = $product->getCategoryIds();
+				
+				// if(isset($product['exclude_from_new']) && $product['exclude_from_new'] == '1')
+				// $datediff = strtotime(date('Y-m-d')) - strtotime($product['created_at']);
+				
+				$date1 = $product['created_at']; 
+				$date2 = date('Y-m-d'); 
+				
+				// Calulating the difference in timestamps 
+				$diff = strtotime($date2) - strtotime($date1); 
+				// 1 day = 24 hours 
+				// 24 * 60 * 60 = 86400 seconds 
+				$datediff = abs(round($diff / 86400)); 
+				
+				if($datediff > $newrange)
+				{
+					if(in_array($newCategoryId,$categoryIds))
+					{
+						# remove product from category if assigned
+						$this->_categoryLinkRepository->deleteByIds($newCategoryId,$productSku);
+						$categoryIds = $product->getCategoryIds();
+					}
+				}
+				else
+				{
+					if(!in_array($newCategoryId,$categoryIds))
+					{
+						# add product to category if exclude_from_new not 1 and has not assigned yet
+						array_push($categoryIds,$newCategoryId);
+						$this->_categoryLinkManagement->assignProductToCategories($productSku, $categoryIds);
+					}
+				}
+				$i++;
+			}
+			echo 'Success';
 		}
-		
-		# get product collection
-		$collection = $this->_productCollectionFactory->create();
-        $collection->addAttributeToSelect('*');
-		
-		$toDate = date("Y-m-d h:i:s"); // current date
-		$fromDate = date('Y-m-d h:i:s', strtotime('-'.$newrange.' day', strtotime($toDate))); // X days before
-		
-		$collection->addFieldToFilter('created_at', array('from'=>$fromDate, 'to'=>$toDate));
-		
-		# code to add data pagination 
-		// $collection->setPageSize(2);
-		$i = 0;
-        foreach ($collection as $product) {
-			
-			# get product sku
-			$productSku = $product->getSku();
-			
-			# get product categories
-			$categoryIds = $product->getCategoryIds();
-			
-			if(isset($product['exclude_from_new']) && $product['exclude_from_new'] == '1')
-			{
-				if(in_array($newCategoryId,$categoryIds))
-				{
-					# remove product from category if assigned
-					$this->_categoryLinkRepository->deleteByIds($newCategoryId,$productSku);
-					$categoryIds = $product->getCategoryIds();
-				}
-			}
-			else
-			{
-				if(!in_array($newCategoryId,$categoryIds))
-				{
-					# add product to category if exclude_from_new not 1 and has not assigned yet
-					array_push($categoryIds,$newCategoryId);
-					$this->_categoryLinkManagement->assignProductToCategories($productSku, $categoryIds);
-				}
-			}
-			$i++;
+		else
+		{
+			echo 'Module Disabled';
 		}
 		
 		exit();
