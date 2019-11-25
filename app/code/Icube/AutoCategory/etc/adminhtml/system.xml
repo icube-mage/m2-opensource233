@@ -1,0 +1,33 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+    	<tab id="autocat" translate="label" sortOrder="1000">
+    		<label>Icube</label>
+    	</tab>
+    	<section id="autocategory" translate="label" type="text" sortOrder="200" showInDefault="1" showInWebsite="1" showInStore="1">
+    		<class>separator-top</class>
+            <label>Auto Category</label>
+            <tab>autocat</tab>
+            <resource>Icube_AutoCategory::config_autocat</resource>
+            <group id="general" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+            	<label>General</label>
+                <field id="active" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Enable</label>
+                    <comment>set module enable/disable</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="newrange" translate="label comment" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>New Range</label>
+                    <comment>In Day</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <validate>validate-number</validate>
+                </field>
+                <field id="cronesetting" translate="label comment" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Crone</label>
+                    <comment>set module enable/disable</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>
