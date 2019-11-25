@@ -59,11 +59,15 @@ atlassian*
 /pub/media/captcha/*
 /pub/static/*
 !/pub/static/.htaccess
+/pub/*
 
 /var/*
-!/var/.htaccess
+/var/.htaccess
 /vendor/*
 !/vendor/.htaccess
 /generated/*
 !/generated/.htaccess
 .DS_Store
+
+/generated/*
+/app/etc/config.php
