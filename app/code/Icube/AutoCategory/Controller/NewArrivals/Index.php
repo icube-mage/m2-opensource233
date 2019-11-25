@@ -37,6 +37,12 @@ class Index extends Action
 	}
 	public function execute()
 	{
+		//Call logger
+		$writer = new \Zend\Log\Writer\Stream(BP . '/var/log/cron_autocategory.log');
+		$logger = new \Zend\Log\Logger();
+		$logger->addWriter($writer);
+		//End Call logger
+		
 		# check if module enable
 		$isEnabled = $newrange	= $this->_scopeConfig->getValue("autocategory/general/enable", $this->_storeScope);
 		
@@ -62,7 +68,7 @@ class Index extends Action
 			// $toDate = date("Y-m-d h:i:s"); // current date
 			// $fromDate = date('Y-m-d h:i:s', strtotime('-'.$newrange.' day', strtotime($toDate))); // X days before
 			// $collection->addFieldToFilter('created_at', array('from'=>$fromDate, 'to'=>$toDate));
-			$collection->addFieldToFilter('exclude_from_new', '0');
+			// $collection->addFieldToFilter('exclude_from_new', '0');
 			
 			# code to add data pagination 
 			// $collection->setPageSize(2);
@@ -89,7 +95,7 @@ class Index extends Action
 				// 24 * 60 * 60 = 86400 seconds 
 				$datediff = abs(round($diff / 86400)); 
 				
-				if($datediff > $newrange)
+				if(($datediff > $newrange) || $product['exclude_from_new'] == '1')
 				{
 					if(in_array($newCategoryId,$categoryIds))
 					{
@@ -109,12 +115,14 @@ class Index extends Action
 				}
 				$i++;
 			}
-			echo 'Success';
+			$msg = 'Success';
 		}
 		else
 		{
-			echo 'Module Disabled';
+			$msg = 'Module Disabled';
 		}
+		echo $msg;
+		$logger->info($msg);
 		
 		exit();
 	}
