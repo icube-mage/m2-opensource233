@@ -83,7 +83,7 @@ class Index extends Action
 				# get product categories
 				$categoryIds = $product->getCategoryIds();
 				
-				// if(isset($product['exclude_from_new']) && $product['exclude_from_new'] == '1')
+				// if(isset($product['is_excluded_from_new']) && $product['is_excluded_from_new'] == '1')
 				// $datediff = strtotime(date('Y-m-d')) - strtotime($product['created_at']);
 				
 				$date1 = $product['created_at']; 
@@ -95,7 +95,7 @@ class Index extends Action
 				// 24 * 60 * 60 = 86400 seconds 
 				$datediff = abs(round($diff / 86400)); 
 				
-				if(($datediff > $newrange) || $product['exclude_from_new'] == '1')
+				if(($datediff > $newrange) || $product['is_excluded_from_new'] == '1')
 				{
 					if(in_array($newCategoryId,$categoryIds))
 					{

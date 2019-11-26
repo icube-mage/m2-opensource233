@@ -25,10 +25,10 @@ class InstallData implements InstallDataInterface
 		
 		$eavSetup->addAttribute(
 			\Magento\Catalog\Model\Product::ENTITY,
-			'exclude_from_new',
+			'is_excluded_from_new',
 			[
 				'attribute_set' => 'default',
-				'type' => 'text',
+				'type' => 'int',
 				'backend' => '',
 				'frontend' => '',
 				'label' => 'Exclude From New',
@@ -38,12 +38,12 @@ class InstallData implements InstallDataInterface
 				'global' => \Magento\Eav\Model\Entity\Attribute\ScopedAttributeInterface::SCOPE_GLOBAL,
 				'visible' => true,
 				'required' => false,
-				'user_defined' => false,
+				'user_defined' => true,
 				'default' => '0',
 				'searchable' => false,
 				'filterable' => false,
 				'comparable' => false,
-				'visible_on_front' => false,
+				'visible_on_front' => true,
 				'used_in_product_listing' => true,
 				'unique' => false,
 				'apply_to' => ''
@@ -51,10 +51,10 @@ class InstallData implements InstallDataInterface
 		);
 		$eavSetup->addAttribute(
 			\Magento\Catalog\Model\Product::ENTITY,
-			'sale',
+			'is_saleable',
 			[
 				'attribute_set' => 'default',
-				'type' => 'text',
+				'type' => 'int',
 				'backend' => '',
 				'frontend' => '',
 				'label' => 'Sale',
@@ -64,12 +64,12 @@ class InstallData implements InstallDataInterface
 				'global' => \Magento\Eav\Model\Entity\Attribute\ScopedAttributeInterface::SCOPE_GLOBAL,
 				'visible' => true,
 				'required' => false,
-				'user_defined' => false,
+				'user_defined' => true,
 				'default' => '0',
 				'searchable' => false,
 				'filterable' => false,
 				'comparable' => false,
-				'visible_on_front' => false,
+				'visible_on_front' => true,
 				'used_in_product_listing' => true,
 				'unique' => false,
 				'apply_to' => ''
