@@ -74,11 +74,12 @@ public function execute()
         ->addStoreFilter($this->storeManager->getStore()->getId())
         ->addAttributeToFilter('status', ['in' => $this->productStatus->getVisibleStatusIds()])
         ->addAttributeToFilter('visibility', ['in' => $this->productVisibility->getVisibleInSiteIds()])
-        ->addAttributeToFilter('exclude_from_new_attribute', '0') //filter product auto category
+        //->addAttributeToFilter('exclude_from_new_attribute', '0') //filter product auto category
         ->load(); 
 
     $this->emulation->stopEnvironmentEmulation();
-    $newrangeconf=(int) $this->scopeConfig->getValue('autocategory/general/newrange', \Magento\Store\Model\ScopeInterface::SCOPE_STORE); //get from conf file
+    #get from conf file
+    $newrangeconf=(int) $this->scopeConfig->getValue('autocategory/general/newrange', \Magento\Store\Model\ScopeInterface::SCOPE_STORE); 
     foreach ($collection as $product) {
         # get product sku
 			$productSku = $product->getSku();
@@ -86,11 +87,17 @@ public function execute()
 		# get product categories
 		$categoryIds = $product->getCategoryIds();
 
+        #get range date
         $currentdate=date_create();
         $creatdateproduct=date_create($product->getData('created_at'));
         $periodtime  = date_diff($creatdateproduct, $currentdate);
         $periodproduct=$periodtime->d;
-        if($periodproduct <= $newrangeconf){
+
+        #get exclude data
+        $exludefromnew=(int) $product->getData('exclude_from_new_attribute');
+
+        $logger->info("period =".$periodproduct." - period cnf =".$newrangeconf." exclude = ".$exludefromnew);
+        if($periodproduct <= $newrangeconf && $exludefromnew == 0){
             $logger->info($periodtime->d." masuk range" );
             if(!in_array($newCategoryId,$categoryIds))
             {

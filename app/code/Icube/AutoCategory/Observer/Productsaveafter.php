@@ -46,9 +46,23 @@ class Productsaveafter implements ObserverInterface
         $_product = $observer->getProduct();  // you will get product object
         $_sku=$_product->getSku(); // for sku
         $categoryIds = $_product->getCategoryIds();
-        array_push($categoryIds,$newCategoryId);
-        $this->_categoryLinkManagement->assignProductToCategories($_sku, $categoryIds);
-        //$logger->info($_sku);
+        #get sale attribute
+        $saleattribute=(int) $_product->getData('sale_attribute');
+        if($saleattribute == 1){
+            array_push($categoryIds,$newCategoryId);
+            $this->_categoryLinkManagement->assignProductToCategories($_sku, $categoryIds);
+            $logger->info($_sku." Masuk");
+        }else{
+
+            if(in_array($newCategoryId,$categoryIds))
+            {
+                # remove product from category if assigned
+                $this->_categoryLinkRepository->deleteByIds($newCategoryId,$_sku);
+                $categoryIds = $_product->getCategoryIds();
+                $logger->info($_sku." Remove");
+            }
+        }
+        
         
 
     }   
