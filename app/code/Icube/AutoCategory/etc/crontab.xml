@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Icube_AutoCategory:etc/crontab.xsd">
     <group id="custom_newarrivals_crongroup">
-        <job name="icube_newarrivals_cronjob" instance="Icube\AutoCategory\Controller\NewArrivals\Index" method="execute">
+        <job name="icube_newarrivals_cronjob" instance="Icube\AutoCategory\Cron\NewArrivals" method="execute">
             <schedule>* * * * *</schedule>
         </job>
     </group>

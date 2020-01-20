@@ -1,7 +1,6 @@
 <?xml version="1.0"?>
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
-    <event name="sale_submit_after">
-        <observer name="sale_observer_after" instance="Icube\AutoCategory\Observer\Productsaveafter" />
+    <event name="catalog_product_save_after">
+        <observer name="catalog_product_save_after_observer" instance="Icube\AutoCategory\Observer\ProductSaveAfter" />
     </event>
-	
 </config>

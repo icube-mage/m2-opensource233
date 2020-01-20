@@ -1,11 +1,11 @@
 <?php 
 
-namespace Icube\AutoCategory\Controller\NewArrivals;
+namespace Icube\AutoCategory\Cron;
 
 use \Magento\Framework\App\Action\Action;
 use \Magento\Framework\App\Action\Context;
 
-class Index extends Action
+class NewArrivals extends Action
 {
 	protected $_productCollectionFactory;
 	protected $_scopeConfig;

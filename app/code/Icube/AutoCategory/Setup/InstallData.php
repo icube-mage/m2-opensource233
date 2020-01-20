@@ -28,6 +28,7 @@ class InstallData implements InstallDataInterface
 			'is_excluded_from_new',
 			[
 				'attribute_set' => 'default',
+				'group' => 'General',
 				'type' => 'int',
 				'backend' => '',
 				'frontend' => '',
@@ -54,6 +55,7 @@ class InstallData implements InstallDataInterface
 			'is_saleable',
 			[
 				'attribute_set' => 'default',
+				'group' => 'General',
 				'type' => 'int',
 				'backend' => '',
 				'frontend' => '',
