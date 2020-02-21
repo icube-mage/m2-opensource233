@@ -1,0 +1,19 @@
+
+<div class="loading js & translation in js">
+<div class="custom_class"></div>
+<script type="text/x-magento-init">
+    {
+        ".custom_class": {
+            "customAlias":{
+                "base_url":"<?php echo $block->getBaseUrl(); ?>"
+            }
+        }
+    }
+</script>
+
+</div>
+
+<div class="banner-promo">
+  <?php echo $this->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('contentstatic')->toHtml();?>
+</div>
+

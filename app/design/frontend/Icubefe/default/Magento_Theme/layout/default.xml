@@ -1,0 +1,18 @@
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+<body>
+
+<block class="Magento\Customer\Block\Account\RegisterLink" name="register-link">
+    <arguments>
+        <argument name="label" xsi:type="string" translate="true">Register</argument>
+    </arguments>
+    </block>
+    <block class="Magento\Customer\Block\Account\RegisterLink" name="register-link-1">
+    <arguments>
+        <argument name="label" xsi:type="string" translate="true">Sign in</argument>
+    </arguments>
+    </block>
+    <move element="top.search" destination="header.panel" />
+    <move element="minicart" destination="header.panel" />
+    <move element="form.subscribe" destination="content" after="-" />
+</body>
+</page>
