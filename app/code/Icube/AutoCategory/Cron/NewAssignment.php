@@ -12,7 +12,6 @@ class NewAssignment {
     ) {
         $this->helperData = $helperData;
         $this->customLogger = $customLogger;
-        parent::__construct();
     }
 
    /**

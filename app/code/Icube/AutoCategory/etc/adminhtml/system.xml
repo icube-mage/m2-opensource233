@@ -18,6 +18,10 @@
                     <label>New Range</label>
                     <comment>In Days</comment>
                 </field>
+                <field id="schedule" translate="label" type="text" sortOrder="3" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Cron Schedule</label>
+                    <comment>example: */5 * * * *</comment>
+                </field>
             </group>
         </section>
     </system>
