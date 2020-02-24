@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="icube" translate="label" sortOrder="0">
+            <label>iCUBE</label>
+        </tab>
+        <section id="autocategory" translate="label" type="text" sortOrder="0" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>Auto Category</label>
+            <tab>icube</tab>
+            <resource>Magento_Catalog::config_catalog</resource>
+            <group id="general" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>General</label>
+                <field id="enable" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0" canRestore="1">
+                    <label>Enable</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>Activate auto category assignee from product</comment>
+                </field>
+                <field id="new_range" translate="label comment" type="text" sortOrder="20" showInDefault="1" showInWebsite="0" showInStore="0" canRestore="1">
+                    <label>New Range</label>
+                    <comment>in Days</comment>
+                </field>
+                <field id="cron" translate="label comment" type="select" sortOrder="30" showInDefault="1" showInWebsite="0" showInStore="0" canRestore="1">
+                    <label>Cron</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>if using cron, enable auto assign product by cron</comment>
+                </field>
+            </group>
+            <group id="categories" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Categories</label>
+                <field id="new_category" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>New Arrivals Category</label>
+                    <source_model>Icube\AutoCategory\Model\Config\Source\Categories</source_model>
+                </field>
+                <field id="sale_category" translate="label" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Sale Product Category</label>
+                    <source_model>Icube\AutoCategory\Model\Config\Source\Categories</source_model>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

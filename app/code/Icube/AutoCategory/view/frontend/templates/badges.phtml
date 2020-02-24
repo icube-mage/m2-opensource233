@@ -1,0 +1,33 @@
+<?php
+
+/** 
+ * @var \Magento\Catalog\Block\Product\View $block
+ */
+
+use Icube\AutoCategory\Helper\Config;
+
+?>
+<?php
+$_product = $block->getProduct();
+$isSale = (bool) (int) $_product->getData(Config::ATTRIBUTE_SALE_CODE);
+if ($isSale) : ?>
+    <span class="sale-badge">SALE</span>
+<?php endif; ?>
+
+<style type="text/css">
+    .product.media {
+        position: relative;
+    }
+
+    .product.media .sale-badge {
+        background-color: #e02b27;
+        color: #fff;
+        font-size: 18px;
+        font-weight: 700;
+        padding: 3px 20px;
+        position: absolute;
+        top: 0;
+        right: 0;
+        z-index: 10;
+    }
+</style>
