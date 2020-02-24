@@ -5,6 +5,7 @@
             <general>
                 <enable>1</enable>
                 <newrange>7</newrange>
+                <schedule>0 1 * * *</schedule>
             </general>
         </autocategory>
     </default>
