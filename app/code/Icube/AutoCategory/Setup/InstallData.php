@@ -39,8 +39,6 @@ class InstallData implements InstallDataInterface
     {
         /** @var EavSetup $eavSetup */
         $eavSetup = $this->eavSetupFactory->create(['setup' => $setup]);
-        $eavSetup->removeAttribute(\Magento\Catalog\Model\Product::ENTITY, 'exclude_from_new');
-        $eavSetup->removeAttribute(\Magento\Catalog\Model\Product::ENTITY, 'sale');
 
         $eavSetup->addAttribute(
             \Magento\Catalog\Model\Product::ENTITY,
