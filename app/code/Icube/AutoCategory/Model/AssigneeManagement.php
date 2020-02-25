@@ -84,14 +84,14 @@ class AssigneeManagement
             $range = $this->config->getDayAsNew();
         }
 
-        $from = strtotime('-'.$range.' day');
+        $from = strtotime('-'.$range.' day UTC');
         $category = $this->getNewCategory();
         $collection = $this->getProducts()
             ->addAttributeToFilter([
                 ['attribute' => Config::ATTRIBUTE_NEW_CODE, 'null' => true],
                 ['attribute' => Config::ATTRIBUTE_NEW_CODE, 'eq' => '0']
             ])
-            ->addAttributeToFilter('created_at', ['lt' => date('Y-m-d h:i:s', $from)])
+            ->addAttributeToFilter('created_at', ['gteq' => date('Y-m-d h:i:s', $from)])
             ->load();
             
         $products = [];
@@ -118,14 +118,14 @@ class AssigneeManagement
     public function cleanNew()
     {
         $range = $this->config->getDayAsNew();
-        $dateFrom = strtotime('-' . $range . ' day');
+        $dateFrom = strtotime('-' . $range . ' day UTC');
         $category = $this->getNewCategory();
         $collection = $category->getProductCollection();
         $productPositions = $category->getProductsPosition();
 
         $removed = [];
         foreach ($collection as $product) {
-            if (isset($productPositions[$product->getId()]) && strtotime($product->getCreatedAt()) > $dateFrom) {
+            if (isset($productPositions[$product->getId()]) && strtotime($product->getCreatedAt()) < $dateFrom) {
                 unset($productPositions[$product->getId()]);
                 $removed[$product->getSku()] = $product;
             }
@@ -152,9 +152,9 @@ class AssigneeManagement
         $category = $this->getNewCategory();
         $productCategoryIds = (array)$product->getCategoryIds();
         $range = $this->config->getDayAsNew();
-        $dateFrom = strtotime('-' . $range . ' day');
+        $dateFrom = strtotime('-' . $range . ' day UTC');
 
-        if (!in_array($category->getId(), $productCategoryIds) && strtotime($product->getCreatedAt()) < $dateFrom) {
+        if (!in_array($category->getId(), $productCategoryIds) && strtotime($product->getCreatedAt()) > $dateFrom) {
             try {
                 $this->categoryLinkManagement->assignProductToCategories($product->getSku(), [$category->getId()]);
                 array_push($productCategoryIds, $category->getId());
