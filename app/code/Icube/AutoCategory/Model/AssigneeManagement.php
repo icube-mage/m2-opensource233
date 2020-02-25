@@ -98,7 +98,7 @@ class AssigneeManagement
         
         try {
             foreach ($collection as $product) {
-                if ($product->getSku()) {
+                if ($product->getSku() && !in_array($category->getId(), (array)$product->getCategoryIds())) {
                     $this->categoryLinkManagement->assignProductToCategories($product->getSku(), [$category->getId()]);
                     $products[$product->getSku()] = $product;
                 }

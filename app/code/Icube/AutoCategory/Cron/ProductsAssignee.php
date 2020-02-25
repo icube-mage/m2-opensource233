@@ -57,7 +57,6 @@ class ProductsAssignee
         $removed = $this->assigneeManagement->cleanNew();
         $this->logger->info('Product removed from New: '. count($removed));
         
-        $this->logger->info('=== Product Assigneer END ===');
-        $this->logger->info(' ');
+        $this->logger->info('=== Product Assigneer END ==='."\n");
     }
 }
