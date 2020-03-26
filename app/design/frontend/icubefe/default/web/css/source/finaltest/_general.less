@@ -2,11 +2,6 @@
     body{
         font-family: 'Roboto', sans-serif;
     }
-
-
-}
-//-----DESKTOP-----//
-@media only screen and (min-width: 1366px){
     .container {
         display: inline-table;
         .item {
@@ -87,6 +82,12 @@
             background-color: #fff;
         }
     }
+
+
+}
+//-----DESKTOP-----//
+@media only screen and (min-width: 1366px){
+
 }
 .media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__l){
 }
@@ -104,24 +105,29 @@
 }
 //-----MOBILE-----//
 .media-width(@extremum, @break) when (@extremum = 'max') and (@break = (@screen__m)) {
-    .container {
-        display: block;
-        .item {
-            width: 100%;
-            .desc {
-                bottom: unset;
-                width: 60%;
-                flex-direction: column;
-                p {
-                    font-size: 16px;
-                    margin: 0;
-                    padding: 10px;
-                }
-                h2 {
-                    margin: 0;
+    .cms-home{
+        .container {
+            display: block;
+            .item {
+                width: 100%;
+                display: flex;
+                align-items: center;
+                padding: 10px;
+                .desc {
+                    bottom: unset;
+                    flex-direction: column;
+                    p {
+                        font-size: 16px;
+                        margin: 0;
+                        padding: 10px;
+                    }
+                    h2 {
+                        margin: 0;
+                    }
                 }
             }
         }
+
     }
 }
 //---CUSTOM RESPONSIVE---//
