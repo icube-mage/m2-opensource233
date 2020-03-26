@@ -1,0 +1,151 @@
+& when (@media-common = true) {
+    body{
+        font-family: 'Roboto', sans-serif;
+    }
+    .widget.block.block-static-block{
+        margin: 0;
+    }
+    p{
+        margin-bottom: 25px;
+    }
+    // styling homepage images
+    .product-image{
+        position: relative;
+        display: inline-block; /* Make the width of box same as image */
+    }
+    .product-info{
+        position: absolute;
+        z-index: 999;
+        margin: 0 auto;
+        left: 0;
+        right: 0;        
+        text-align: center;
+        top: 50%; /* Adjust this value to move the positioned div up and down */
+        color: #fff;
+        width: 60%; /* Set the width of the positioned div */
+    }
+    .products {
+        display: flex;
+        flex-wrap: wrap;
+        margin: 0;
+        padding-left: 52px;
+        padding-right: 52px ;
+    }
+    .product-image img {
+        width: 100%;
+    }
+    .product-card {
+        margin-left: 7.5px;
+        margin-right: 7.5px;
+        margin-bottom: 45px;
+        flex: 1 30%;
+    }
+    #first6 {
+        background: transparent;
+        color: white;
+    }
+
+    // second image
+    .product-image2{
+        position: relative;
+        display: inline-block; /* Make the width of box same as image */
+    }
+    .product-info2{
+        position: absolute;
+        z-index: 999;
+        margin: 0 auto;
+        left: 0;
+        right: 0;        
+        text-align: center;
+        top: 30%; /* Adjust this value to move the positioned div up and down */
+        color: #fff;
+        width: 80%; /* Set the width of the positioned div */
+    }
+    .products2 {
+        display: flex;
+        flex-wrap: wrap;
+        margin: 0;
+        padding: 0;
+    }
+    .product-card2 {
+        width: 50%;
+    }
+    #second2 {
+        background: white;
+        color: black;
+    }
+}
+
+//-----DESKTOP-----//
+@media only screen and (min-width: 1366px){
+}
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__xl){   
+}
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__l){  
+    .widget.block.block-static-block {
+        .product-info{
+            top: 50%;
+        }
+        .product-info2{
+            top: 30%;
+        }
+    }
+}
+//-----TABLET-----//
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m ){
+    .block.newsletter .field {
+        width: 300px;
+    }
+    .widget.block.block-static-block {
+        h1{
+            margin-bottom: 25px;
+        }
+        .product-info{
+            top: 35%;
+        }
+        .product-info2{
+            top: 10%;
+        }
+    }
+
+}
+//-----MOBILE-----//
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = (@screen__m)) { 
+    .widget.block.block-static-block {
+        .products {
+            display: flex;
+            flex-wrap: wrap;
+            margin: 0;
+            padding-left: 0;
+            padding-right: 0;
+        }
+        .product-card {
+            margin-left: 0;
+            margin-right: 0;
+            margin-bottom: 0;
+            flex: 1 100%;
+        }
+        .products2 {
+            display: flex;
+            flex-wrap: wrap;
+            margin: 0;
+            padding: 0;
+        }
+        .product-card2 {
+            flex: 1 100%;
+        }
+        .product-info2{
+            top: 25%;
+        }
+        p{
+            font-size: x-small;
+            margin-bottom: 15px;
+        }
+        h1{
+            margin-bottom: 15px;
+        }     
+    }
+}
+//---CUSTOM RESPONSIVE ---//
+@media only screen and (max-width: 834px){
+}
