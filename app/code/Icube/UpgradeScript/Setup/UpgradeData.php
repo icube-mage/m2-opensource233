@@ -132,7 +132,7 @@ EOD;
         <div class="product-image"><img src="{{media url="assetsimages/tools.jpg"}}" alt="">
         <div class="product-info">
         <h3>TOOLS &amp; <br>EQUIPMENT</h3>
-        <a href="http://local.asessment.test/"><button id="first6">SHOP NOW</button></a></div>
+        <a href="http://local.asessment.test/customer/account/login/"><button id="first6">SHOP NOW</button></a></div>
         </div>
         </div>
         <!-- batas 1 images -->
@@ -140,7 +140,7 @@ EOD;
         <div class="product-image"><img src="{{media url="assetsimages/equip.jpg"}}" alt="">
         <div class="product-info">
         <h3>CLIMBING <br>EQUIPMENT</h3>
-        <a href="http://local.asessment.test/"><button id="first6">SHOP NOW</button></a></div>
+        <a href="http://local.asessment.test/customer/account/login/"><button id="first6">SHOP NOW</button></a></div>
         </div>
         </div>
         <!-- batas 1 images -->
@@ -148,7 +148,7 @@ EOD;
         <div class="product-image"><img src="{{media url="assetsimages/accecories.jpg"}}" alt="">
         <div class="product-info">
         <h3><br>ACCECORIES</h3>
-        <a href="http://local.asessment.test/"><button id="first6">SHOP NOW</button></a></div>
+        <a href="http://local.asessment.test/customer/account/login/"><button id="first6">SHOP NOW</button></a></div>
         </div>
         </div>
         <!-- batas 1 images -->
@@ -156,7 +156,7 @@ EOD;
         <div class="product-image"><img src="{{media url="assetsimages/headwear.jpg"}}" alt="">
         <div class="product-info">
         <h3><br>HEADWEAR</h3>
-        <a href="http://local.asessment.test/"><button id="first6">SHOP NOW</button></a></div>
+        <a href="http://local.asessment.test/customer/account/login/"><button id="first6">SHOP NOW</button></a></div>
         </div>
         </div>
         <!-- batas 1 images -->
@@ -164,7 +164,7 @@ EOD;
         <div class="product-image"><img src="{{media url="assetsimages/foot.jpg"}}" alt="">
         <div class="product-info">
         <h3><br>FOOTWEAR</h3>
-        <a href="http://local.asessment.test/"><button id="first6">SHOP NOW</button></a></div>
+        <a href="http://local.asessment.test/customer/account/login/"><button id="first6">SHOP NOW</button></a></div>
         </div>
         </div>
         <!-- batas 1 images -->
@@ -172,7 +172,7 @@ EOD;
         <div class="product-image"><img src="{{media url="assetsimages/bags.jpg"}}" alt="">
         <div class="product-info">
         <h3>BAGS<br>&amp; PACKS</h3>
-        <a href="http://local.asessment.test/"><button id="first6">SHOP NOW</button></a></div>
+        <a href="http://local.asessment.test/customer/account/login/"><button id="first6">SHOP NOW</button></a></div>
         </div>
         </div>
         </section>
@@ -199,7 +199,7 @@ EOD;
         <div class="product-info2">
         <h1>MENS</h1>
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus nec lorem diam. Nullam eu ligula vitae diam mattis volutpat. Ut eros est, pretitum vitae leo sed, cursus tempor justo.</p>
-        <a href="http://local.asessment.test/"><button id="second2">SHOP NOW</button></a></div>
+        <a href="http://local.asessment.test/customer/account/login/"><button id="second2">SHOP NOW</button></a></div>
         </div>
         </div>
         <!-- batas 1 images -->
@@ -208,7 +208,7 @@ EOD;
         <div class="product-info2">
         <h1>WOMENS</h1>
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus nec lorem diam. Nullam eu ligula vitae diam mattis volutpat. Ut eros est, pretitum vitae leo sed, cursus tempor justo.</p>
-        <a href="http://local.asessment.test/"><button id="second2">SHOP NOW</button></a></div>
+        <a href="http://local.asessment.test/customer/account/login/"><button id="second2">SHOP NOW</button></a></div>
         </div>
         </div>
         </section>
