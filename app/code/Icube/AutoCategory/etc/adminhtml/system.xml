@@ -2,18 +2,18 @@
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
 	<system>
 		<tab id="autocategory" translate="label" sortOrder="1000">
-            <label>Range Days</label>
+            <label>autocategory</label>
         </tab>
 		<section id="autocategory_setting" translate="label" type="text" sortOrder="101" showInDefault="1" showInWebsite="1" showInStore="1">
-			<label>Range Days Setting</label>
-			<tab>Range Days</tab>  
+			<label>autocategory Setting</label>
+			<tab>autocategory</tab>  
 			<resource>Icube_AutoCategory::config</resource>
-			 	<group id="general" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
-                <label>Range Days</label>
-                 	<field id="rand_number" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
-				    		<label>Range Days</label> 
-								</field>
-      	</group>
+			 <group id="general" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>General</label>
+                 <field id="rand_number" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+				    <label>Random Number</label> 
+				</field>
+            </group>
 		</section>
 	</system>
 </config>

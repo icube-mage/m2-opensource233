@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
 	<default>
-		<training_setting><!-- section -->
+		<autocategory_setting><!-- section -->
 			<general><!-- group -->
-				<rand_number>17</rand_number><!-- field -->
+				<rand_number> </rand_number><!-- field -->
 
 			</general>
-		</training_setting>
+		</autocategory_setting>
 	</default>
 </config>
