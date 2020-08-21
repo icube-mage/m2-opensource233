@@ -8,7 +8,7 @@ use Magento\Framework\Setup\InstallDataInterface;
 use Magento\Framework\Setup\ModuleContextInterface;
 use Magento\Framework\Setup\ModuleDataSetupInterface;
 
-class AddAttributeSet implements InstallDataInterface {
+class IntallData implements InstallDataInterface {
 
  private $eavSetupFactory;
 
