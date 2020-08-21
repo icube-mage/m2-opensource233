@@ -5,7 +5,16 @@
    <argument name="commands" xsi:type="array">
     <item
      name="groupNewProduct"
-     xsi:type="object">Icube\AutoCategory\Console\GroupingProduct</item>
+     xsi:type="object">Icube\AutoCategory\Console\GroupingProduct
+    </item>
+    <item
+     name="NewEnableArrival"
+     xsi:type="object">Icube\AutoCategory\Console\NewEnableArrival
+    </item>
+    <item
+     name="NewDisableArrival"
+     xsi:type="object">Icube\AutoCategory\Console\NewDisableArrival
+    </item>
    </argument>
   </arguments>
  </type>

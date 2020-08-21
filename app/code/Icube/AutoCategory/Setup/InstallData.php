@@ -16,96 +16,51 @@ class InstallData implements InstallDataInterface {
   $this->eavSetupFactory = $eavSetupFactory;
  }
 
-// public function install_bak(
-//     ModuleDataSetupInterface $setup,
-//     ModuleContextInterface $context) {
-//
-//  $eavSetup = $this->eavSetupFactory->create(['setup' => $setup]);
-//
-////  $eavSetup->addAttribute(
-//  $eavSetup->removeAttribute(
-//      \Magento\Catalog\Model\Product::ENTITY, 'exclude_new',
-//      [
-//        'group'                   => 'General',
-//        'attribute_set'           => 'Default',
-//        'type'                    => 'int',
-//        'backend'                 => '',
-//        'frontend'                => '',
-//        'label'                   => 'Exclude From New',
-//        'input'                   => 'boolean',
-//        'class'                   => '',
-//        'source'                  => \Magento\Eav\Model\Entity\Attribute\Source\Boolean::class,
-//        'global'                  => \Magento\Eav\Model\Entity\Attribute\ScopedAttributeInterface::SCOPE_GLOBAL,
-//        'visible'                 => true,
-//        'required'                => false,
-//        'user_defined'            => false,
-//        'default'                 => '0',
-//        'searchable'              => false,
-//        'filterable'              => false,
-//        'comparable'              => false,
-//        'visible_on_front'        => false,
-//        'used_in_product_listing' => false,
-//        'unique'                  => false,
-//        'apply_to'                => 'simple,configurable,virtual,bundle,downloadable'
-//      ]
-//  );
-//
-//  $eavSetup->addAttribute(
-//      \Magento\Catalog\Model\Product::ENTITY, 'sale',
-//      [
-//        'group'                   => 'General',
-//        'attribute_set'           => 'Default',
-//        'type'                    => 'int',
-//        'backend'                 => '',
-//        'frontend'                => '',
-//        'label'                   => 'Sale',
-//        'input'                   => 'boolean',
-//        'class'                   => '',
-//        'source'                  => \Magento\Eav\Model\Entity\Attribute\Source\Boolean::class,
-//        'global'                  => \Magento\Eav\Model\Entity\Attribute\ScopedAttributeInterface::SCOPE_GLOBAL,
-//        'visible'                 => true,
-//        'required'                => false,
-//        'user_defined'            => false,
-//        'default'                 => '0',
-//        'searchable'              => false,
-//        'filterable'              => false,
-//        'comparable'              => false,
-//        'visible_on_front'        => false,
-//        'used_in_product_listing' => false,
-//        'unique'                  => false,
-//        'apply_to'                => 'simple,configurable,virtual,bundle,downloadable'
-//      ]
-//  );
-// }
-
- public function install(
-     ModuleDataSetupInterface $setup,
-     ModuleContextInterface $context) {
-
+ public function install(ModuleDataSetupInterface $setup, ModuleContextInterface $context) {
   $eavSetup = $this->eavSetupFactory->create(['setup' => $setup]);
+
   $eavSetup->addAttribute(
       \Magento\Catalog\Model\Product::ENTITY,
-      'sample_attribute',
+      'sale',
       [
-        'type'                    => 'text',
+        'type'                    => 'int',
         'backend'                 => '',
         'frontend'                => '',
-        'label'                   => 'Sample Atrribute',
-        'input'                   => 'text',
-        'class'                   => '',
-        'source'                  => '',
+        'label'                   => 'Sale',
+        'input'                   => 'boolean',
         'global'                  => \Magento\Eav\Model\Entity\Attribute\ScopedAttributeInterface::SCOPE_GLOBAL,
         'visible'                 => true,
-        'required'                => true,
+        'required'                => false,
         'user_defined'            => false,
-        'default'                 => '',
+        'default'                 => '0',
         'searchable'              => false,
         'filterable'              => false,
         'comparable'              => false,
         'visible_on_front'        => false,
         'used_in_product_listing' => true,
-        'unique'                  => false,
-        'apply_to'                => ''
+        'unique'                  => false
+      ]
+  );
+  $eavSetup->addAttribute(
+      \Magento\Catalog\Model\Product::ENTITY,
+      'exclude_from_new',
+      [
+        'type'                    => 'int',
+        'backend'                 => '',
+        'frontend'                => '',
+        'label'                   => 'Exclude From New',
+        'input'                   => 'boolean',
+        'global'                  => \Magento\Eav\Model\Entity\Attribute\ScopedAttributeInterface::SCOPE_GLOBAL,
+        'visible'                 => true,
+        'required'                => false,
+        'user_defined'            => false,
+        'default'                 => '0',
+        'searchable'              => false,
+        'filterable'              => false,
+        'comparable'              => false,
+        'visible_on_front'        => false,
+        'used_in_product_listing' => true,
+        'unique'                  => false
       ]
   );
  }
