@@ -1,0 +1,67 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+ <system>
+  <tab id="icube" translate="label" sortOrder="200">
+   <label>Icube</label>
+  </tab>
+  <section id="autocategory"
+           translate="label"
+           type="text"
+           sortOrder="99"
+           showInDefault="1"
+           showInWebsite="1"
+           showInStore="1">
+   <label>Auto Category</label>
+
+   <tab>icube</tab>
+
+   <resource>Icube_AutoCategory::config</resource>
+   <group
+    id="general"
+    translate="label"
+    type="text"
+    sortOrder="1"
+    showInDefault="1"
+    showInWebsite="1"
+    showInStore="1">
+
+    <label>General</label>
+
+    <field
+     id="enable"
+     translate="label"
+     type="select"
+     sortOrder="1"
+     showInDefault="1"
+     showInWebsite="1"
+     showInStore="1">
+     <label>Enable</label>
+     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+    </field>
+
+    <field
+     id="newrange"
+     translate="label"
+     type="text"
+     sortOrder="2"
+     showInDefault="1"
+     showInWebsite="1"
+     showInStore="1">
+     <label>Range (day(s))</label>
+    </field>
+
+    <field
+     id="cronjob"
+     translate="label"
+     type="text"
+     sortOrder="3"
+     showInDefault="1"
+     showInWebsite="1"
+     showInStore="1">
+     <label>Cronjob</label>
+    </field>
+
+   </group>
+  </section>
+ </system>
+</config>
