@@ -9,13 +9,13 @@ use Symfony\Component\Console\Output\OutputInterface;
 class GroupingProduct extends Command {
 
  protected function configure() {
-  $this->setName('icube:groupingproduct');
-  $this->setDescription('Icube AutoCategory - Grouping Product');
+  $this->setName('icube:gp');
+  $this->setDescription('Icube AutoCategory - Grouping New Product');
   parent::configure();
  }
 
  protected function execute(InputInterface $input, OutputInterface $output) {
-  $output->writeln("123");
+  $output->writeln("testing data");
  }
 
 }
