@@ -13,13 +13,12 @@
           <field id="enabled" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">
               <label>Enabled/Disabled</label>
               <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
-              <comment>This setting to set product added to new arrival category automatically or not.</comment>
+              <comment>To Set Product to New Arrivals Category Automatically.</comment>
           </field>
-					<field id="enabled" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">
-              <label>Range Day New Item</label>
-              <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
-              <comment>This setting to set product added to new arrival category automatically or not.</comment>
-          </field>
+					<field id="rangeday" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+				    <label>Range Days for New Added items</label> 
+						<comment>This will set how long a new item in new arrival categories</comment>
+					</field>		
       </group>
 		</section>
 	</system>
