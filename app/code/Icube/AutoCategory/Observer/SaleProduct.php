@@ -1,5 +1,5 @@
 <?php
-namespace Icube\Training\Observer;
+namespace Icube\AutoCategory\Observer;
  
 use Magento\Framework\Event\ObserverInterface;
  
@@ -7,7 +7,7 @@ class SaleProduct implements ObserverInterface
 {
 	public function execute(\Magento\Framework\Event\Observer $observer)
     {
-        $product = $observer->getEvent()->getProduct();
+        $product = $observer->getProduct();
 
         $_sale = $product->getCustomSale();
         $_sku = $product->getSku();
