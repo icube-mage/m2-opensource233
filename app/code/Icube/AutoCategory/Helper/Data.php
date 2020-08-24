@@ -20,6 +20,13 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
     );
   }
 
+  public function getRange()
+  {
+    return $this->scopeConfig->getValue(
+      'auto_category/general/range', ScopeInterface::SCOPE_STORE
+    );
+  }
+
   public function getHello()
   {
     return "Hello World !";

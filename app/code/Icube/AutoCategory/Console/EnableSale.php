@@ -8,7 +8,7 @@ use Symfony\Component\Console\Input\InputOption;
 use Icube\AutoCategory\Helper\Data;
 use Magento\Framework\App\Config\ScopeConfigInterface;
 
-class EnableNewArrivals extends Command
+class EnableSale extends Command
 {
 	protected $helper;
   protected $productCollection;
@@ -25,16 +25,16 @@ class EnableNewArrivals extends Command
 	
    protected function configure()
    {
-       $this->setName('final:enableArrivals');
+       $this->setName('final:enableSale');
        $this->setDescription('Training command line');
    }
    protected function execute(InputInterface $input, OutputInterface $output)
    {
    		$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
-      $categoryLinkManagement = $objectManager->get('Magento\Catalog\Api\CategoryLinkManagementInterface');
-      $categoryLinkRepository = $objectManager->get('Magento\Catalog\Model\CategoryLinkRepository');
+      $categoryLinkRepository = $objectManager->get('Magento\Catalog\Api\CategoryLinkManagementInterface');
+      $categoryLinkRepositorys = $objectManager->get('Magento\Catalog\Model\CategoryLinkRepository');
 
-      $categoryId = '41';
+      $categoryId = '37';
       
       $_enable = $this->helper->getEnabled();
       $_range = $this->helper->getRange();
@@ -45,19 +45,14 @@ class EnableNewArrivals extends Command
       {
         foreach ($collection as $product) {
           $_sku = $product->getSku();
-          $createdAt = $product->getCreatedAt();           
-          $_current = date('Y-m-d');
-          $_date = date('Y-m-d',strtotime($_current.'-'.$_range.'day'));
-          $_status = ($createdAt >= $_date && $createdAt <= $_current);
-
-          if($product->getExcludeFromNew()==0 && $_status)
+          $_sale = $product->getCustomSale();          
+          if($_sale == 1)
           {
-            $categoryIds= array('41');
-            $categoryLinkManagement->assignProductToCategories($_sku, $categoryIds);
+            $categoryIds= array('37');
+            $categoryLinkRepository->assignProductToCategories($_sku, $categoryIds);
           }else
           {
-            $categoryLinkRepository->deleteByIds($categoryId,$_sku);
-
+            $categoryLinkRepositorys->deleteByIds($categoryId,$_sku);
           }
         }        
       }      

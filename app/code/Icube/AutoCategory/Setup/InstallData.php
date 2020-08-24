@@ -47,12 +47,12 @@ class InstallData implements InstallDataInterface
 
 		$eavSetup->addAttribute(
 			\Magento\Catalog\Model\Product::ENTITY,
-			'sale',
+			'custom_sale',
 			[
 				'type' => 'int',
 				'backend' => '',
 				'frontend' => '',
-				'label' => 'Sale',
+				'label' => 'Custom Sale',
 				'input' => 'boolean',
 				'global' => \Magento\Eav\Model\Entity\Attribute\ScopedAttributeInterface::SCOPE_GLOBAL,
 				'visible' => true,

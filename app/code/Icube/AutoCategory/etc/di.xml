@@ -5,6 +5,7 @@
 			<argument name="commands" xsi:type="array">
 				<item name="sayhello" xsi:type="object">Icube\AutoCategory\Console\Sayhello</item>
 				<item name="enableNewArrivals" xsi:type="object">Icube\AutoCategory\Console\EnableNewArrivals</item>
+				<item name="enableSale" xsi:type="object">Icube\AutoCategory\Console\EnableSale</item>
 			</argument>
 		</arguments>
 	</type>
