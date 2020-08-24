@@ -8,12 +8,19 @@
 			<label>autocategory Setting</label>
 			<tab>autocategory</tab>  
 			<resource>Icube_AutoCategory::config</resource>
-			 <group id="general" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
-                <label>General</label>
-                 <field id="rand_number" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
-				    <label>Random Number</label> 
-				</field>
-            </group>
+			<group id="general" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+			<label>Auto Cron</label>
+          <field id="enabled" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">
+              <label>Enabled/Disabled</label>
+              <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+              <comment>This setting to set product added to new arrival category automatically or not.</comment>
+          </field>
+					<field id="enabled" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">
+              <label>Range Day New Item</label>
+              <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+              <comment>This setting to set product added to new arrival category automatically or not.</comment>
+          </field>
+      </group>
 		</section>
 	</system>
 </config>
