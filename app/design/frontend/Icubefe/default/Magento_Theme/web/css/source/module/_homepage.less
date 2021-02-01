@@ -1,0 +1,348 @@
+& when (@media-common = true) {
+
+	.page-main{
+		max-width: 100%;
+		display: flex;
+		flex-direction: column;
+		.cms-block-row{
+			display: flex;
+			flex-direction: row;
+			padding-left: 52px;
+			padding-right: 52px;
+			margin-bottom: 45px;	
+		}
+
+		.cms-block-item-mid{
+			margin-left: 15px;
+			margin-right: 15px;
+		}
+
+		.cms-block-mw {
+			display: flex;
+			flex-direction: row;
+			margin-bottom: 45px;
+			padding: 0;
+		}
+
+					 
+		.cms-block-desc{
+			color: white;
+			position: absolute;
+			display: flex;
+			flex-direction: column;
+    		text-align: center;
+			align-items: center;
+			flex-direction: column;
+			width: 20%;
+			margin-top: -88px;
+			p {
+				display: inline-block;
+				position: absolute;
+				color: white;
+				font-size: 20px;
+				width: 75%;
+				bottom: 80%;
+				left: 33%;
+			}
+			button {
+				display: inline;
+				position: absolute;
+				width: 50%;
+				top: -8%;
+				left: 45%;
+				color: white;
+				background-color: Transparent;
+				background-repeat: no-repeat;
+				border: 1px solid;
+				box-shadow: none;
+				cursor: pointer;
+				outline: none;
+			}
+		}
+
+		.cms-block-mw .cms-block-mens{
+			position: relative;
+			.cms-block-mens-desc{
+				position: relative;
+				color: white;
+				display: flex;
+				flex-direction: column;
+				text-align: center;
+				align-items: center;
+				bottom: 48%;
+				width: 100%;
+				margin: 0;
+				h2{
+					font-size: 58px;
+				}
+				p{
+					width: 80%;
+					margin-bottom: 25px;
+				}
+				button{
+					width: 30%;
+					height: 38px;
+					background-color: white;
+					border: none;
+				}
+			}
+		}
+
+		.cms-block-mw .cms-block-womens{
+			position: relative;
+			.cms-block-womens-desc{
+				position: relative;
+				color: white;
+				display: flex;
+				flex-direction: column;
+				text-align: center;
+				align-items: center;
+				bottom: 48%;
+				width: 100%;
+				margin: 0;
+				h2{
+					font-size: 58px;
+				}
+				p{
+					width: 80%;
+					margin-bottom: 25px;
+				}
+				button{
+					width: 30%;
+					height: 38px;
+					background-color: white;
+					border: none;
+				}
+			}
+		}
+
+		
+	}
+	
+}
+//-----DESKTOP-----//
+@media only screen and (min-width: 1366px){
+}
+
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__l){
+}
+//-----TABLET-----//
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m){	
+
+}
+//-----MOBILE-----//
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = (@screen__ipad)) {
+}
+//---CUSTOM RESPONSIVE---//
+
+& when (@media-target = 'mobile') {
+	@media only screen and (max-width: 768px) and (min-width: 425px){
+			
+		.page-main{
+		max-width: 100%;
+		display: flex;
+		flex-direction: column;
+		.cms-block-row{
+			display: flex;
+			flex-direction: row;
+			padding-left: 52px;
+			padding-right: 52px;
+			margin-bottom: 45px;	
+		}
+
+		.cms-block-item-mid{
+			margin-left: 15px;
+			margin-right: 15px;
+		}
+
+		.cms-block-mw {
+			display: flex;
+			flex-direction: row;
+			margin-bottom: 45px;
+			padding: 0;
+		}
+
+					 
+		.cms-block-desc{
+			color: white;
+			position: absolute;
+			display: flex;
+			flex-direction: column;
+    		text-align: center;
+			align-items: center;
+			flex-direction: column;
+			width: 20%;
+			margin-top: -88px;
+			p {
+				display: inline-block;
+				position: absolute;
+				color: white;
+				font-size: 20px;
+				width: 75%;
+				bottom: 80%;
+				left: 33%;
+			}
+			button {
+				display: inline;
+				position: absolute;
+				width: 50%;
+				top: -8%;
+				left: 45%;
+				color: white;
+				font-size: 9px;
+				background-color: Transparent;
+				background-repeat: no-repeat;
+				border: 1px solid;
+				box-shadow: none;
+				cursor: pointer;
+				outline: none;
+			}
+		}
+
+		.cms-block-mw .cms-block-mens{
+			position: relative;
+			.cms-block-mens-desc{
+				position: relative;
+				color: white;
+				display: flex;
+				flex-direction: column;
+				text-align: center;
+				align-items: center;
+				bottom: 51%;
+				width: 100%;
+				margin: 0;
+				h2{
+					font-size: 30px;
+				}
+				p{
+					width: 80%;
+					margin-bottom: 25px;
+					font-size: 14px;
+				}
+				button{
+					width: 30%;
+					height: 34px;
+					background-color: white;
+					border: none;
+				}
+			}
+		}
+
+		.cms-block-mw .cms-block-womens{
+			position: relative;
+			.cms-block-womens-desc{
+				position: relative;
+				color: white;
+				display: flex;
+				flex-direction: column;
+				text-align: center;
+				align-items: center;
+				bottom: 51%;
+				width: 100%;
+				margin: 0;
+				h2{
+					font-size: 30px;
+				}
+				p{
+					width: 80%;
+					margin-bottom: 25px;
+					font-size: 14px;
+				}
+				button{
+					width: 30%;
+					height: 34px;
+					background-color: white;
+					border: none;
+				}
+			}
+		}
+
+		
+	}
+		
+		}	
+}
+
+& when (@media-target = 'mobile') {
+	@media only screen and (max-width: 425px) and (min-width: 320px){
+			.content-first .cms-block-row{
+				display: flex;
+				flex-direction: column;
+				padding: 0;
+				margin-bottom: 15px;
+				.cms-block-desc{
+					color: white;
+					position: absolute;
+					display: flex;
+					text-align: center;
+					align-items: center;
+					flex-direction: column;
+					width: 65%;
+					margin-top: -88px;
+					margin-bottom: 15px;
+					p{
+						display: inline-block;
+						position: absolute;
+						color: white;
+						font-size: 30px;
+						width: 73%;
+						bottom: 80%;
+						left: 34%;
+					}
+				}
+			}
+
+			.page-main .cms-block-item-mid{
+			margin-left: 0px;
+			margin-right: 0px;
+			}
+
+			.content-second {
+				max-width: 100%;
+				.cms-block-mw{
+					display: flex;
+					flex-direction: column;
+					margin-bottom: 45px;
+					.cms-block-mens .cms-block-mens-desc{
+						    position: absolute;
+							color: white;
+							display: flex;
+							flex-direction: column;
+							text-align: center;
+							align-items: center;
+							bottom: 11%;
+							width: 100%;
+							margin: 0;
+							h2{
+								font-size: 36px;
+							}
+							p{
+								width: 80%;
+								font-size: 12px;
+								margin-bottom: 25px;
+							}
+					}
+					.cms-block-womens .cms-block-womens-desc{
+						    position: absolute;
+							color: white;
+							display: flex;
+							flex-direction: column;
+							text-align: center;
+							align-items: center;
+							bottom: 11%;
+							width: 100%;
+							margin: 0;
+							h2{
+								font-size: 36px;
+							}
+							p{
+								width: 80%;
+								font-size: 12px;
+								margin-bottom: 25px;
+							}
+					}
+				}
+			}
+		}	
+}
