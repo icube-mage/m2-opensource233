@@ -1,0 +1,38 @@
+& when (@media-common = true) {
+    .qty-button-style {
+        background-color: white;
+        vertical-align: top;
+    }
+    .control {
+        .decrease-button {
+            border-radius: 7px 0 0 7px;
+            margin-right: -5px;
+            .qty-button-style();
+        }
+    } 
+    .control {
+        .increase-button {
+            border-radius: 0 7px 7px 0;
+            margin-left: -5px;
+            .qty-button-style();
+        }
+    } 
+}
+//-----DESKTOP-----//
+@media only screen and (min-width: 1366px){
+}
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__l){
+}
+//-----TABLET-----//
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m){
+}
+//-----MOBILE-----//
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = (@screen__m)) {
+}
+//---CUSTOM RESPONSIVE---//
+& when (@media-target = 'desktop') {
+	@media only screen and (min-width: 1366px){
+	}
+	@media only screen and (max-width: 960px) and (min-width: 768px){
+	}
+}
