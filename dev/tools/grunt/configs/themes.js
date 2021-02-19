@@ -19,6 +19,15 @@
  *
  */
 module.exports = {
+    default: {
+        area: 'frontend',
+        name: 'Icubefe/default',
+        locale: 'en_US',
+        files: [
+            'css/stylesheet',
+        ],
+        dsl: 'less'
+    },
     blank: {
         area: 'frontend',
         name: 'Magento/blank',
