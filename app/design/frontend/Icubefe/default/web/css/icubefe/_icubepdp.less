@@ -1,0 +1,46 @@
+#icube-qty {
+    .input-group {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+    }
+    .input-group-input {
+        max-width: 50px;
+        text-align: center;
+        border: 1px solid @white;
+    }
+    .button-decrease,
+    .button-increase {
+        box-shadow: none;
+        border: 1px solid #8bc53f;
+        background: #8bc53f;
+        border-radius: 0;
+        color: #fff;
+        font-size: 24px;
+        min-width: 40px;
+    }
+}
+
+#popup {
+    padding-bottom: 40px;
+}
+
+.box-tocart {
+    .fieldset {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        .action {
+            &.tocart:not(:last-child) {
+                margin-bottom: 20px;
+                margin-left: 20px;
+            }
+            &.tocart {
+                font-size: 16px;
+                padding: 0 20px;
+                min-height: 32px;
+                width: 100%;
+            }
+        }
+    }
+}
