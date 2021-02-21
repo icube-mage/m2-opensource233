@@ -71,6 +71,10 @@ class UpgradeData implements UpgradeDataInterface
     {
         if (version_compare($context->getVersion(), '1.0.1', '<')) {
             $this->returnexchange();
+            
+            $this->CmsPage_Home();
+            $this->CmsBlock_SmallBanners();
+            $this->CmsBlock_BigBanners();
         }
     }
 
@@ -115,6 +119,167 @@ EOD;
             $this->createPage()->setData($cmsPageContent)->save();
         } else {
             $cmsPage->setContent($pageContent)->save();
+        }
+    }
+
+    function CmsPage_Home()
+    {
+        $pageContent = <<<EOD
+        {{widget type="Magento\Cms\Block\Widget\Block" template="widget/static_block/default.phtml" block_id="19"}}
+        {{widget type="Magento\Cms\Block\Widget\Block" template="widget/static_block/default.phtml" block_id="20"}}
+
+EOD;
+        $identifier='home';
+        $title='Home Training';
+
+        $cmsPage = $this->createPage()->load($identifier, 'identifier');
+
+        if (!$cmsPage->getId()) {
+            $cmsPageContent = [
+                'title' => $title,
+                'content_heading' => 'Home Page',
+                'page_layout' => '1column',
+                'identifier' => $identifier,
+                'content' => $pageContent,
+                'is_active' => 1,
+                'stores' => [1],
+                'sort_order' => 0,
+            ];
+            $this->createPage()->setData($cmsPageContent)->save();
+        } else {
+            $cmsPage->setContent($pageContent)->save();
+        }
+    }
+
+    function CmsBlock_SmallBanners()
+    {
+        $blockContent= <<<EOD
+        <section id="small-images">
+            <ul class="item-list">
+                <li class="item-image">
+                    <figure>
+                        <img src="{{media url=&quot;wysiwyg/home/banner/tools.jpg&quot;}}" alt="" />
+                        <div class="content">
+                            <h4>Tools & Equipment</h4>
+                            <a href="">Shop Now</a>
+                        </div>
+                    </figure>
+                </li>
+                <li class="item-image">
+                    <figure>
+                        <img src="{{media url=&quot;wysiwyg/home/banner/equip.jpg&quot;}}" alt="" />
+                        <div class="content">
+                            <h4>Climbing Equipment</h4>
+                            <a href="">Shop Now</a>
+                        </div>
+                    </figure>
+                </li>
+                <li class="item-image">
+                    <figure>
+                        <img src="{{media url=&quot;wysiwyg/home/banner/accecories.jpg&quot;}}" alt="" />
+                        <div class="content">
+                            <h4>Accessories</h4>
+                            <a href="">Shop Now</a>
+                        </div>
+                    </figure>
+                </li>
+                <li class="item-image">
+                    <figure>
+                        <img src="{{media url=&quot;wysiwyg/home/banner/headwear.jpg&quot;}}" alt="" />
+                        <div class="content">
+                            <h4>Headwear</h4>
+                            <a href="">Shop Now</a>
+                        </div>
+                    </figure>
+                </li>
+                <li class="item-image">
+                    <figure>
+                        <img src="{{media url=&quot;wysiwyg/home/banner/foot.jpg&quot;}}" alt="" />
+                        <div class="content">
+                            <h4>Footwear</h4>
+                            <a href="">Shop Now</a>
+                        </div>
+                    </figure>
+                </li>
+                <li class="item-image">
+                    <figure>
+                        <img src="{{media url=&quot;wysiwyg/home/banner/bags.jpg&quot;}}" alt="" />
+                        <div class="content">
+                            <h4>Bags & Packs</h4>
+                            <a href="">Shop Now</a>
+                        </div>
+                    </figure>
+                </li>
+            </ul>
+        </section>
+EOD;
+
+        $identifier='icubefe-small-banner';
+        $title='Icubefe - Small banner';
+
+        $cmsBlock = $this->createBlock()->load($identifier, 'identifier');
+
+        if (!$cmsBlock->getId()) {
+            $cmsBlockContent = [
+                'title' => $title,
+                'identifier' => $identifier,
+                'content' => $blockContent,
+                'is_active' => 1,
+                'stores' => [1],
+                'sort_order' => 0,
+            ];
+            $this->createPage()->setData($cmsBlockContent)->save();
+        } else {
+            $cmsBlock->setContent($blockContent)->save();
+        }
+    }
+
+    function CmsBlock_BigBanners()
+    {
+        $blockContent= <<<EOD
+        <section id="big-images">
+            <ul class="item-list">
+                <li class="item-image">
+                    <figure>
+                        <img src="{{media url=&quot;wysiwyg/home/banner/mens.jpg&quot;}}" alt="" />
+                        <div class="content">
+                            <h2>Mens</h2>
+                            <p>Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum</p>
+                            <button class="button-shop">Show Now</button>
+                        </div>
+                    </figure>
+                </li>
+                <li class="item-image">
+                    <figure>
+                        <img src="{{media url=&quot;wysiwyg/home/banner/womens.jpg&quot;}}" alt="" />
+                        <div class="content">
+                            <h2>Womens</h2>
+                            <p>Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum</p>
+                            <button class="button-shop">Show Now</button>
+                        </div>
+                    </figure>
+                </li>
+            </ul>
+        </section>
+EOD;
+
+        $identifier='icubefe-big-banner';
+        $title='Icubefe - Big banner';
+
+        $cmsBlock = $this->createBlock()->load($identifier, 'identifier');
+
+        if (!$cmsBlock->getId()) {
+            $cmsBlockContent = [
+                'title' => $title,
+                'identifier' => $identifier,
+                'content' => $blockContent,
+                'is_active' => 1,
+                'stores' => [1],
+                'sort_order' => 0,
+            ];
+            $this->createPage()->setData($cmsBlockContent)->save();
+        } else {
+            $cmsBlock->setContent($blockContent)->save();
         }
     }
 
