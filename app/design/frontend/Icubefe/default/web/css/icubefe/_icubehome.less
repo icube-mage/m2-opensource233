@@ -1,7 +1,183 @@
+.cms-home {
+    .header-content,
+    .page-main {
+        max-width: @homepage;
+        padding: 0;
+    }
+}
 .block.newsletter {
     margin: 0 auto;
     input {
         border: 1px solid @biru;
         border-radius: 3px 0 0 3px;
+    }
+}
+
+#small-images,
+#big-images {
+    margin-bottom: 45px;
+    .item-list {
+        figure {
+            position: relative;
+        }
+        .item-image {
+            .content {
+                position: absolute;
+                z-index: 1;
+                bottom: 100px;
+                width: 100%;
+                text-align: center;
+            }
+        }
+    }
+}
+
+#small-images {
+    padding: 0 52px;
+    .item-list {
+        list-style-type: none;
+        margin: 0 -10px;
+        overflow: hidden;
+        padding: 0;
+        .item-image {
+            margin-bottom: 20px;
+            box-sizing: border-box;
+            width: 32.333333%;
+            display: inline-block;
+            &:nth-child(3n+1) {
+                margin-left: calc((100% - 3*32.333333%)/3);
+            }
+            .content h4,
+            .content a {
+                color: @white;
+                text-transform: uppercase;
+                letter-spacing: .5px;
+            }
+            .content h4 {
+                font-size: 20px;
+                max-width: 50%;
+                margin: 0 auto 20px;
+                line-height: 25px;
+            }
+            .content a {
+                border: 1px solid @white;
+                padding: 7px 15px;
+                border-radius: 2px;
+                font-size: 13px;
+                &:hover {
+                    text-decoration: none;
+                }
+            }
+        }
+        figure {
+            margin: 0 15px;
+            img {
+                max-width: 100%;
+                width: 100%;
+                border-radius: 3px;
+                margin-bottom: 45px;
+            }
+        }
+    }
+}
+
+#big-images {
+    .item-list {
+        list-style: none;
+        padding: 0;
+        display: flex;
+        align-items: center;
+    }
+
+    h2,
+    p {
+        color: @white;
+    }
+
+    h2 {
+        text-transform: uppercase;
+        letter-spacing: .5px;
+        font-size: 35px;
+    }
+
+    p {
+        max-width: 70%;
+        margin: 0 auto 10px;
+    }
+
+    .button-shop {
+        position: relative;
+        border: 1px solid @white;
+        text-transform: uppercase;
+        letter-spacing: .5px;
+        padding: 7px 15px;
+        border-radius: 2px;
+        background: @white;
+        color: @black;
+    }
+
+    .item-list {
+        .item-image {
+            .content {
+                transform: translate(0, -35%);
+            }
+        }
+    }
+}
+
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__s) {
+    .cms-home .header-content,
+    .cms-home .page-main {
+        padding: 0;
+    }
+
+    .widget.block #big-images { 
+        .item-list {
+            display: block;
+            .item-image .content {
+                transform: translate(0, 50%);
+                bottom: 50%;
+            }
+        }
+        p {
+            width: 100%;
+            font-size: 12px;
+        }
+    }
+
+    .widget.block #small-images {
+        padding: 0;
+        .item-list {
+            margin: 0;
+        }
+        .item-list .item-image {
+            margin-bottom: 0;
+            width: 100%;
+        }
+        .item-list figure img {
+            margin-bottom: 10px;
+            display: grid;
+        }
+        .item-list .item-image:nth-child(3n+1) {
+            margin-left: 0;
+        };
+    }
+}
+
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @ipadpro_breakpoint) {
+    .widget.block #small-images {
+        .item-list .item-image .content h4 {
+            max-width: 90%;
+        }
+        .item-list .item-image .content a {
+            font-size: 12px;
+        }
+    }
+
+    .widget.block #big-images {
+        .item-list .item-image .content {
+            transform: translate(0, 50%);
+            bottom: 50%;
+        }
     }
 }
