@@ -10,8 +10,10 @@ define([
         },
 
         initObservable: function () {
-            this._super()
-                .observe('qty');
+            this._super();
+            this.qty= ko.observable(this.defaultQty);
+            this.min= ko.observable(this.minQty);
+            this.max= ko.observable(this.maxQty);
 
             return this;
         },
@@ -21,21 +23,25 @@ define([
         },
 
         decreaseQty: function() {
-            var qty;
+            var minValue = this.min();
+            var minusQty = this.qty() - 1;
 
-            if (this.qty() > 1) {
-                qty = this.qty() - 1;
-            } else {
-                qty = 1;
+            if (minusQty < 1) {
+                minusQty = minValue;
             }
 
-            this.qty(qty);
+            this.qty(minusQty);
         },
 
         increaseQty: function() {
-            var qty = this.qty() + 1;
+            var maxValue = this.max();
+            var plusQty = this.qty() + 1;
 
-            this.qty(qty);
+            if(plusQty > maxValue) {
+                plusQty = maxValue;
+            } 
+
+            this.qty(plusQty);
         }
     });
 });

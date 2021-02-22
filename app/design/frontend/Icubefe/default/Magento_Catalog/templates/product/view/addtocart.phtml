@@ -24,8 +24,10 @@
                                     "qty-button": {
                                         "component": "qty-button",
                                         "config": {
-                                            "qty": <?php echo $block->getProductDefaultQty() * 1 ?>,
-                                            "dataValidate": <?php echo json_encode($block->getQuantityValidators()) ?>
+                                            "defaultQty": <?= $block->getProductDefaultQty() * 1 ?>,
+                                            "minQty": 1,
+                                            "maxQty": 10,
+                                            "dataValidate": <?= json_encode($block->getQuantityValidators()) ?>
                                         }
                                     }
                                 }
