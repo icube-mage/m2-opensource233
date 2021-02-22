@@ -1,0 +1,108 @@
+& when (@media-common = true) {
+    .page-main {max-width: 100%;}
+    .action.primary {
+        background: #333333;
+        border: 1px solid #333333;
+    }
+    .cat-wrapper {
+        position: relative;
+        img {width: 100%;}
+    }
+    .cat-content {
+        position: absolute;
+        right: 50px;
+        bottom: 50px;
+        left: 50px;
+        text-align: center;
+        color: #ffffff;
+        .cat-name, .cat-name-2 {
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            text-shadow: 0 4px 8px rgba(0,0,0,.1);
+        }
+        .cat-name {font-size: 32px;}
+        .cat-name-2 {font-size: 48px;}
+        .cat-desc {
+            text-shadow: 0 2px 4px rgba(0,0,0,.4);
+            margin-bottom: 32px;
+        }
+    }
+    .btn {
+        display: inline-block;
+        padding: 8px 28px;
+        font-weight: 700;
+    }
+    .btn-category-1, .btn-category-1:hover, .btn-category-1:visited {
+        border: 1px solid #ffffff;
+        border-radius: 2px;
+        text-transform: uppercase;
+        background-color: transparent;
+        color: #ffffff;
+        text-decoration: none;
+    }
+    .btn-category-2, .btn-category-2:hover, .btn-category-2:visited {
+        border-radius: 2px;
+        text-transform: uppercase;
+        background-color: #ffffff;
+        color: #333333;
+        text-decoration: none;
+        padding: 12px 36px;
+    }
+    .cms-index-index .page-main, .cms-home.cms-index-index .page-main {max-width: 100%;}
+    .row-cat-1 {
+        display: grid;
+        gap: 15px;
+        grid-template-columns: repeat(1,minmax(0,1fr));
+    }
+    .row-cat-2 {
+        display: grid;
+        gap: 0;
+        grid-template-columns: repeat(1,minmax(0,1fr));
+        margin: 0 -15px;
+    }
+    .row-cat-2 {margin: 0 -15px;}
+}
+
+// Break Points
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__xxs) {
+    
+}
+
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__xs) {
+    .cat-desc {display: none;}
+}
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__s) {
+    
+}
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+    .row-cat-1 {grid-template-columns: repeat(2,minmax(0,1fr));}
+    .row-cat-2 {
+        grid-template-columns: repeat(2,minmax(0,1fr));
+        margin: 0 -20px;
+    }
+}
+
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__ipadPro) {
+    .btn-category-2, .btn-category-2:hover, .btn-category-2:visited {
+        background-color: #5bdb27;
+        color: blue;
+    }
+}
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__l) {
+    .row-cat-1 {grid-template-columns: repeat(3,minmax(0,1fr));}
+    .row-cat-2 {
+        grid-template-columns: repeat(2,minmax(0,1fr));
+        margin: 0 -20px;
+    }
+    .cat-wrapper {margin-bottom: 30px;}
+    .page-main {max-width: 100%;}
+    .page-main .block {margin-bottom: 45px;}
+    .cmsblock-6-images-wrapper {padding: 0 52px;}
+}
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__xl) {
+    
+}
