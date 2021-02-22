@@ -1,0 +1,193 @@
+// Custom less for extending Pearl/weltpixel theme can be added in this file in the new theme
+// Here custom less for clients can be added
+
+
+& when (@media-common = true) {
+    .inline-flex{
+        display: inline-flex;
+        align-items: center;
+        justify-content: flex-start;
+    }
+    .custom-button{
+        padding: 1rem 2.5rem;
+        border: solid 1px #fff;
+        font-weight: bold;
+        font-size: 1.5rem;
+        color: #fff;
+        background: none;
+        border-radius: 0;
+        box-shadow: none;
+    }
+
+    .custom-cms-block{
+        width: 100%;
+        margin: auto;
+        margin-bottom: 45px;
+    }
+
+    .wrapper-category{
+        text-align: center;
+        box-sizing: border-box;
+
+        .category-block{
+            display:inline-flex;
+            justify-content: center;
+            align-items: flex-end;
+            position: relative;
+
+            .category-caption{
+                color:#fff;
+                position: absolute;
+                text-align:center;
+
+                width: 80%;
+
+                margin-bottom: 5rem;
+
+                *{
+                    margin: 1rem;
+                }
+                .category-image{
+                    margin-bottom:0px;
+                }
+                button{
+                    box-shadow: none;
+                    &:hover{
+                        background: none;
+                        color: #fff;
+                        border: solid 1px #fff;
+                    }
+                }
+                .category-caption-title{
+                    font-size: 2.5rem;
+                }
+
+            }
+        }
+    }
+
+    .wrapper-gender{
+        padding:0;
+        text-align: center;
+
+        .gender-block{
+            display:inline-flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            width: 100%;
+
+            .gender-image{
+                width: 100%;
+
+                & *{
+                    width: 100%;
+                }
+            }
+            .gender-caption{
+                position: absolute;
+                color:#fff;
+                text-align:center;
+                width: 80%;
+                
+                .gender-caption-title{
+                    font-size: 3rem;
+                }
+                .gender-caption-sub{
+                    font-size: 1.25rem;
+                    text-align: center;
+                }
+                .gender-caption-button{
+                    color: #333;
+                    background: #fff;
+                }
+            }
+        }
+    }
+}
+
+//-----DESKTOP-----//
+@media only screen and (min-width: @screen__xxl){
+    
+}
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__xl){
+
+}
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__l){
+    
+    .wrapper-category{
+        text-align: center;
+        padding: 0 52px;
+        box-sizing: border-box;
+
+        .category-block{
+            width: 29%;
+            margin: 0 15px 45px 15px;
+        }
+    }
+
+
+    .wrapper-gender{
+        display: flex;
+        
+        .gender-block{
+            width: 50%;
+
+            .gender-caption{
+
+                *{
+                    margin:2rem;
+                }
+            }
+        }
+    }
+}
+
+//-----TABLET-----//
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__ipad){
+    
+}
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m){
+    .category-block{
+        width: 45%;
+    }
+}
+//-----MOBILE-----//
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = (@screen__m)) {
+
+    .wrapper-category{
+        padding: 0;
+        .category-block{
+            margin: 0;
+            
+            .category-image{
+                margin-bottom:0px;
+            }
+        }
+    }
+    .wrapper-gender{
+        display: block;
+
+        .gender-block{
+            width: 100%;
+            
+
+            .gender-caption{
+                width: 100%;
+                *{
+                    margin:1rem;
+                }
+            }
+        }
+    }
+
+}
+//---CUSTOM RESPONSIVE---//
+& when (@media-target = 'desktop') {
+	@media only screen and (min-width: 1366px){
+
+	}
+	@media only screen and (max-width: 960px) and (min-width: 768px){
+
+	}
+}
