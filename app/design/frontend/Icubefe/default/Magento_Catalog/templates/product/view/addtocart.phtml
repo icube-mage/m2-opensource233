@@ -25,7 +25,7 @@
     <div class="actions">
       <button type="submit" title="<?= $block->escapeHtmlAttr($buttonTitle) ?>" class="action primary tocart"
         id="product-addtocart-button">
-        <span><?= $block->escapeHtml($buttonTitle) ?></span><span>tombol</span>
+        <span><?= $block->escapeHtml($buttonTitle) ?>
       </button>
       <?= $block->getChildHtml('', true) ?>
     </div>
@@ -33,11 +33,10 @@
 </div>
 <?php endif; ?>
 
-
 <script type="text/x-magento-init">
   {
-    "*": {
+    "#product_addtocart_form": {
       "Magento_Catalog/js/validate-product": {}
-    },
+    }
   }
 </script>

@@ -1,12 +1,9 @@
-define(["jquery", "Magento_Ui/js/modal/modal", "jquery/ui"], function (
-	$,
-	modal
-) {
+define(["jquery", "Magento_Ui/js/modal/modal"], function (	$, modal) {
 	"use strict";
 
 	$.widget("icube.myModal", $.mage.modal, {
 		options: {
-			closeOtomatis: 1000,
+			closeOtomatis: 1500,
 		},
 		openModal: function () {
 			this._closeOtomatis();
