@@ -161,7 +161,7 @@ EOD;
                         <img src="{{media url=&quot;wysiwyg/home/banner/tools.jpg&quot;}}" alt="" />
                         <div class="content">
                             <h4>Tools & Equipment</h4>
-                            <a href="">Shop Now</a>
+                            <a href="{{store url="customer/account/login"}}">Shop Now</a>
                         </div>
                     </figure>
                 </li>
@@ -170,7 +170,7 @@ EOD;
                         <img src="{{media url=&quot;wysiwyg/home/banner/equip.jpg&quot;}}" alt="" />
                         <div class="content">
                             <h4>Climbing Equipment</h4>
-                            <a href="">Shop Now</a>
+                            <a href="{{store url="customer/account/login"}}">Shop Now</a>
                         </div>
                     </figure>
                 </li>
@@ -179,7 +179,7 @@ EOD;
                         <img src="{{media url=&quot;wysiwyg/home/banner/accecories.jpg&quot;}}" alt="" />
                         <div class="content">
                             <h4>Accessories</h4>
-                            <a href="">Shop Now</a>
+                            <a href="{{store url="customer/account/login"}}">Shop Now</a>
                         </div>
                     </figure>
                 </li>
@@ -188,7 +188,7 @@ EOD;
                         <img src="{{media url=&quot;wysiwyg/home/banner/headwear.jpg&quot;}}" alt="" />
                         <div class="content">
                             <h4>Headwear</h4>
-                            <a href="">Shop Now</a>
+                            <a href="{{store url="customer/account/login"}}">Shop Now</a>
                         </div>
                     </figure>
                 </li>
@@ -197,7 +197,7 @@ EOD;
                         <img src="{{media url=&quot;wysiwyg/home/banner/foot.jpg&quot;}}" alt="" />
                         <div class="content">
                             <h4>Footwear</h4>
-                            <a href="">Shop Now</a>
+                            <a href="{{store url="customer/account/login"}}">Shop Now</a>
                         </div>
                     </figure>
                 </li>
@@ -206,7 +206,7 @@ EOD;
                         <img src="{{media url=&quot;wysiwyg/home/banner/bags.jpg&quot;}}" alt="" />
                         <div class="content">
                             <h4>Bags & Packs</h4>
-                            <a href="">Shop Now</a>
+                            <a href="{{store url="customer/account/login"}}">Shop Now</a>
                         </div>
                     </figure>
                 </li>
@@ -245,7 +245,7 @@ EOD;
                         <div class="content">
                             <h2>Mens</h2>
                             <p>Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum</p>
-                            <button class="button-shop">Show Now</button>
+                            <a href="{{store url="customer/account/login"}}" class="button-shop">Show Now</a>
                         </div>
                     </figure>
                 </li>
@@ -255,7 +255,7 @@ EOD;
                         <div class="content">
                             <h2>Womens</h2>
                             <p>Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum</p>
-                            <button class="button-shop">Show Now</button>
+                            <a href="{{store url="customer/account/login"}}" class="button-shop">Show Now</a>
                         </div>
                     </figure>
                 </li>
